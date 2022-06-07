@@ -1,5 +1,8 @@
 package Vista.Paneles;
 
+import Utilerias.GUITools;
+import Vista.Paneles.Eliminar.DeleteClientePanel;
+import Vista.Paneles.Registrar.CreateClientePanel;
 import Vista.app;
 
 /**
@@ -37,7 +40,7 @@ public class PanelCD extends javax.swing.JPanel {
         lblTitle.setText("Libros");
 
         jComboBox1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Registrar", "Eliminar" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Registrar", "Eliminar", "Reportes" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -49,6 +52,11 @@ public class PanelCD extends javax.swing.JPanel {
 
         jButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jButton1.setText("Continuar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout LibroLayout = new javax.swing.GroupLayout(Libro);
         Libro.setLayout(LibroLayout);
@@ -112,6 +120,18 @@ public class PanelCD extends javax.swing.JPanel {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(String.valueOf(jComboBox1.getSelectedItem()).equals("Eliminar")){
+            DeleteClientePanel p = new DeleteClientePanel();
+            GUITools.panelIntoPanel(this,p);
+        }else if(String.valueOf(jComboBox1.getSelectedItem()).equals("Registrar")){
+            CreateClientePanel c = new CreateClientePanel();
+            GUITools.panelIntoPanel(this,c);
+        }else if(String.valueOf(jComboBox1.getSelectedItem()).equals("Reportes")){
+            //Reportes
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
