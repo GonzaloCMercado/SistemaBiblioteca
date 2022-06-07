@@ -37,7 +37,6 @@ public class Princial extends javax.swing.JFrame {
         FondoDescripcion = new javax.swing.JPanel();
         lblSistema = new javax.swing.JLabel();
         lblBibliotecario = new javax.swing.JLabel();
-        btnReportes = new javax.swing.JButton();
         btnCliente = new javax.swing.JButton();
         ContenedorDinamico = new Utilerias.FondoNoAjustable("TexturaBlanco1.jpeg");
 
@@ -142,26 +141,6 @@ public class Princial extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        btnReportes.setBackground(new java.awt.Color(255, 255, 255));
-        btnReportes.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
-        btnReportes.setForeground(new java.awt.Color(255, 255, 255));
-        btnReportes.setText("Reportes");
-        btnReportes.setBorder(null);
-        btnReportes.setContentAreaFilled(false);
-        btnReportes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnReportesMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnReportesMouseExited(evt);
-            }
-        });
-        btnReportes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReportesActionPerformed(evt);
-            }
-        });
-
         btnCliente.setBackground(new java.awt.Color(255, 255, 255));
         btnCliente.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
         btnCliente.setForeground(new java.awt.Color(255, 255, 255));
@@ -193,16 +172,14 @@ public class Princial extends javax.swing.JFrame {
                         .addGap(54, 54, 54)
                         .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(MenuLateralLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(btnReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(MenuLateralLayout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addComponent(btnSucursales))
                     .addGroup(MenuLateralLayout.createSequentialGroup()
                         .addGap(56, 56, 56)
-                        .addGroup(MenuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCliente)
-                            .addComponent(btnLibros))))
+                        .addComponent(btnLibros))
+                    .addGroup(MenuLateralLayout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addComponent(btnCliente)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         MenuLateralLayout.setVerticalGroup(
@@ -211,13 +188,11 @@ public class Princial extends javax.swing.JFrame {
                 .addComponent(FondoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(btnLibros)
-                .addGap(44, 44, 44)
+                .addGap(47, 47, 47)
                 .addComponent(btnCliente)
-                .addGap(35, 35, 35)
+                .addGap(43, 43, 43)
                 .addComponent(btnSucursales)
-                .addGap(41, 41, 41)
-                .addComponent(btnReportes)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
                 .addComponent(btnSalir)
                 .addGap(27, 27, 27))
         );
@@ -252,7 +227,6 @@ public class Princial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLibrosActionPerformed
-        System.out.println("AAAAAHHHHH");
         app.typePanelCD = "LIBRO";
         Vista.Paneles.PanelCD l = new Vista.Paneles.PanelCD();
         GUITools.panelIntoPanel(ContenedorDinamico, l);
@@ -282,14 +256,6 @@ public class Princial extends javax.swing.JFrame {
         btnSucursales.setForeground(Color.WHITE);
     }//GEN-LAST:event_btnSucursalesMouseExited
 
-    private void btnReportesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReportesMouseEntered
-        btnReportes.setForeground(Color.BLUE);
-    }//GEN-LAST:event_btnReportesMouseEntered
-
-    private void btnReportesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReportesMouseExited
-        btnReportes.setForeground(Color.WHITE);
-    }//GEN-LAST:event_btnReportesMouseExited
-
     private void btnSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseEntered
         btnSalir.setForeground(Color.BLUE);
     }//GEN-LAST:event_btnSalirMouseEntered
@@ -299,28 +265,26 @@ public class Princial extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirMouseExited
 
     private void btnClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClienteMouseEntered
-        // TODO add your handling code here:
+        btnCliente.setForeground(Color.BLUE);
     }//GEN-LAST:event_btnClienteMouseEntered
 
     private void btnClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClienteMouseExited
-        // TODO add your handling code here:
+        btnCliente.setForeground(Color.WHITE);
     }//GEN-LAST:event_btnClienteMouseExited
 
     private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed
         app.typePanelCD = "CLIENTE";
         Vista.Paneles.PanelCD l = new Vista.Paneles.PanelCD();
+        l.jComboBox1.removeItemAt(2);
         GUITools.panelIntoPanel(ContenedorDinamico, l);
     }//GEN-LAST:event_btnClienteActionPerformed
 
     private void btnSucursalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSucursalesActionPerformed
         app.typePanelCD = "SUCURSALES";
         Vista.Paneles.PanelCD l = new Vista.Paneles.PanelCD();
+        l.jComboBox1.removeItemAt(2);
         GUITools.panelIntoPanel(ContenedorDinamico, l);
     }//GEN-LAST:event_btnSucursalesActionPerformed
-
-    private void btnReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnReportesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -363,7 +327,6 @@ public class Princial extends javax.swing.JFrame {
     private javax.swing.JPanel MenuLateral;
     private javax.swing.JButton btnCliente;
     private javax.swing.JButton btnLibros;
-    private javax.swing.JButton btnReportes;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnSucursales;
     private javax.swing.JLabel lblBibliotecario;

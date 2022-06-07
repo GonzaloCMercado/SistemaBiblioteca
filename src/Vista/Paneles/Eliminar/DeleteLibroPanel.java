@@ -26,7 +26,7 @@ public class DeleteLibroPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new Utilerias.FondoNoAjustable("TexturaBlanco.jpeg");
+        jPanel1 = new Utilerias.FondoNoAjustable("TexturaBlanco1.jpeg");
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();

@@ -2,7 +2,11 @@ package Vista.Paneles;
 
 import Utilerias.GUITools;
 import Vista.Paneles.Eliminar.DeleteClientePanel;
+import Vista.Paneles.Eliminar.DeleteLibroPanel;
+import Vista.Paneles.Eliminar.DeleteSucursalPanel;
 import Vista.Paneles.Registrar.CreateClientePanel;
+import Vista.Paneles.Registrar.CreateLibrosPanel;
+import Vista.Paneles.Registrar.CreateSucursalPanel;
 import Vista.app;
 
 /**
@@ -32,7 +36,7 @@ public class PanelCD extends javax.swing.JPanel {
         lblTitle = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnContinuar = new javax.swing.JButton();
         Libro = new Utilerias.FondoImagen("LibroAbierto1.jpg");
 
         lblTitle.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
@@ -50,11 +54,11 @@ public class PanelCD extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel1.setText("¿Que accion deseas realizar?");
 
-        jButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton1.setText("Continuar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnContinuar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        btnContinuar.setText("Continuar");
+        btnContinuar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnContinuarActionPerformed(evt);
             }
         });
 
@@ -80,7 +84,7 @@ public class PanelCD extends javax.swing.JPanel {
                         .addComponent(Libro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(248, 248, 248))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FondoLayout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(btnContinuar)
                         .addGap(252, 252, 252))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FondoLayout.createSequentialGroup()
                         .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -101,7 +105,7 @@ public class PanelCD extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnContinuar)
                 .addGap(49, 49, 49))
         );
 
@@ -121,24 +125,46 @@ public class PanelCD extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(String.valueOf(jComboBox1.getSelectedItem()).equals("Eliminar")){
-            DeleteClientePanel p = new DeleteClientePanel();
-            GUITools.panelIntoPanel(this,p);
-        }else if(String.valueOf(jComboBox1.getSelectedItem()).equals("Registrar")){
-            CreateClientePanel c = new CreateClientePanel();
-            GUITools.panelIntoPanel(this,c);
-        }else if(String.valueOf(jComboBox1.getSelectedItem()).equals("Reportes")){
-            //Reportes
+    private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
+        if (app.typePanelCD.equals("LIBRO")) {
+            if (String.valueOf(jComboBox1.getSelectedItem()).equals("Eliminar")) {
+                DeleteLibroPanel p = new DeleteLibroPanel();
+                GUITools.panelIntoPanel(this, p);
+            } else if (String.valueOf(jComboBox1.getSelectedItem()).equals("Registrar")) {
+                CreateLibrosPanel p = new CreateLibrosPanel();
+                GUITools.panelIntoPanel(this, p);
+            } else {
+                //Reportes
+            }
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+
+        if (app.typePanelCD.equals("CLIENTE")) {
+            if (String.valueOf(jComboBox1.getSelectedItem()).equals("Registrar")) {
+                CreateClientePanel p = new CreateClientePanel();
+                GUITools.panelIntoPanel(this, p);
+            } else {
+                DeleteClientePanel p = new DeleteClientePanel();
+                GUITools.panelIntoPanel(this, p);
+            }
+        }
+
+        if (app.typePanelCD.equals("SUCURSALES")) {
+            if (String.valueOf(jComboBox1.getSelectedItem()).equals("Registrar")) {
+                CreateSucursalPanel p = new CreateSucursalPanel();
+                GUITools.panelIntoPanel(this, p);
+            } else {
+                DeleteSucursalPanel p = new DeleteSucursalPanel();
+                GUITools.panelIntoPanel(this, p);
+            }
+        }
+    }//GEN-LAST:event_btnContinuarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Fondo;
     private javax.swing.JPanel Libro;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
+    public javax.swing.JButton btnContinuar;
+    public javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables
