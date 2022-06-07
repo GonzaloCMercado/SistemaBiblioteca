@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Vista;
 
 import Utilerias.GUITools;
@@ -62,6 +57,11 @@ public class Princial extends javax.swing.JFrame {
         btnClientes.setText("Clientes");
         btnClientes.setBorder(null);
         btnClientes.setContentAreaFilled(false);
+        btnClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClientesActionPerformed(evt);
+            }
+        });
 
         btnSucursales.setBackground(new java.awt.Color(255, 255, 255));
         btnSucursales.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
@@ -69,6 +69,11 @@ public class Princial extends javax.swing.JFrame {
         btnSucursales.setText("Sucursales");
         btnSucursales.setBorder(null);
         btnSucursales.setContentAreaFilled(false);
+        btnSucursales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSucursalesActionPerformed(evt);
+            }
+        });
 
         btnSalir.setBackground(new java.awt.Color(255, 255, 255));
         btnSalir.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
@@ -180,9 +185,24 @@ public class Princial extends javax.swing.JFrame {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         System.out.println("AAAAAHHHHH");
-        Vista.Paneles.Libros l = new Vista.Paneles.Libros();
+        app.typePanelCD = "LIBRO";
+        Vista.Paneles.PanelCD l = new Vista.Paneles.PanelCD();
         GUITools.panelIntoPanel(ContenedorDinamico, l);
     }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
+        System.out.println("AAAAAHHHHH");
+        app.typePanelCD = "CLIENTES";
+        Vista.Paneles.PanelCD l = new Vista.Paneles.PanelCD();
+        GUITools.panelIntoPanel(ContenedorDinamico, l);
+    }//GEN-LAST:event_btnClientesActionPerformed
+
+    private void btnSucursalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSucursalesActionPerformed
+        System.out.println("AAAAAHHHHH");
+        app.typePanelCD = "SUCURSAL";
+        Vista.Paneles.PanelCD l = new Vista.Paneles.PanelCD();
+        GUITools.panelIntoPanel(ContenedorDinamico, l);
+    }//GEN-LAST:event_btnSucursalesActionPerformed
 
     /**
      * @param args the command line arguments
