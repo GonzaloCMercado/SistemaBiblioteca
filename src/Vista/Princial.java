@@ -6,6 +6,7 @@
 package Vista;
 
 import Utilerias.GUITools;
+import java.awt.Color;
 
 /**
  *
@@ -30,13 +31,14 @@ public class Princial extends javax.swing.JFrame {
     private void initComponents() {
 
         MenuLateral = new javax.swing.JPanel();
-        btnRegistrar = new javax.swing.JButton();
+        btnLibros = new javax.swing.JButton();
         btnClientes = new javax.swing.JButton();
         btnSucursales = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         FondoDescripcion = new javax.swing.JPanel();
         lblSistema = new javax.swing.JLabel();
         lblBibliotecario = new javax.swing.JLabel();
+        btnReportes = new javax.swing.JButton();
         ContenedorDinamico = new Utilerias.FondoNoAjustable("TexturaBlanco1.jpeg");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -44,15 +46,23 @@ public class Princial extends javax.swing.JFrame {
         MenuLateral.setBackground(new java.awt.Color(11, 129, 1));
         MenuLateral.setForeground(new java.awt.Color(42, 201, 26));
 
-        btnRegistrar.setBackground(new java.awt.Color(255, 255, 255));
-        btnRegistrar.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
-        btnRegistrar.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegistrar.setText("Libros");
-        btnRegistrar.setBorder(null);
-        btnRegistrar.setContentAreaFilled(false);
-        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+        btnLibros.setBackground(new java.awt.Color(255, 255, 255));
+        btnLibros.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
+        btnLibros.setForeground(new java.awt.Color(255, 255, 255));
+        btnLibros.setText("Libros");
+        btnLibros.setBorder(null);
+        btnLibros.setContentAreaFilled(false);
+        btnLibros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnLibrosMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnLibrosMouseExited(evt);
+            }
+        });
+        btnLibros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarActionPerformed(evt);
+                btnLibrosActionPerformed(evt);
             }
         });
 
@@ -62,6 +72,19 @@ public class Princial extends javax.swing.JFrame {
         btnClientes.setText("Clientes");
         btnClientes.setBorder(null);
         btnClientes.setContentAreaFilled(false);
+        btnClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnClientesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnClientesMouseExited(evt);
+            }
+        });
+        btnClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClientesActionPerformed(evt);
+            }
+        });
 
         btnSucursales.setBackground(new java.awt.Color(255, 255, 255));
         btnSucursales.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
@@ -69,6 +92,14 @@ public class Princial extends javax.swing.JFrame {
         btnSucursales.setText("Sucursales");
         btnSucursales.setBorder(null);
         btnSucursales.setContentAreaFilled(false);
+        btnSucursales.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSucursalesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSucursalesMouseExited(evt);
+            }
+        });
 
         btnSalir.setBackground(new java.awt.Color(255, 255, 255));
         btnSalir.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
@@ -76,6 +107,19 @@ public class Princial extends javax.swing.JFrame {
         btnSalir.setText("Salir");
         btnSalir.setBorder(null);
         btnSalir.setContentAreaFilled(false);
+        btnSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSalirMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSalirMouseExited(evt);
+            }
+        });
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         FondoDescripcion.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -101,7 +145,7 @@ public class Princial extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FondoDescripcionLayout.createSequentialGroup()
                         .addComponent(lblSistema)
-                        .addGap(42, 42, 42))))
+                        .addGap(48, 48, 48))))
         );
         FondoDescripcionLayout.setVerticalGroup(
             FondoDescripcionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,38 +157,58 @@ public class Princial extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        btnReportes.setBackground(new java.awt.Color(255, 255, 255));
+        btnReportes.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
+        btnReportes.setForeground(new java.awt.Color(255, 255, 255));
+        btnReportes.setText("Reportes");
+        btnReportes.setBorder(null);
+        btnReportes.setContentAreaFilled(false);
+        btnReportes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnReportesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnReportesMouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout MenuLateralLayout = new javax.swing.GroupLayout(MenuLateral);
         MenuLateral.setLayout(MenuLateralLayout);
         MenuLateralLayout.setHorizontalGroup(
             MenuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(FondoDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(MenuLateralLayout.createSequentialGroup()
                 .addGroup(MenuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(MenuLateralLayout.createSequentialGroup()
                         .addGap(56, 56, 56)
-                        .addComponent(btnRegistrar))
+                        .addComponent(btnLibros))
                     .addGroup(MenuLateralLayout.createSequentialGroup()
                         .addGap(46, 46, 46)
                         .addComponent(btnClientes))
                     .addGroup(MenuLateralLayout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(MenuLateralLayout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addComponent(btnSucursales))
                     .addGroup(MenuLateralLayout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(21, 21, 21)
+                        .addComponent(btnReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(FondoDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         MenuLateralLayout.setVerticalGroup(
             MenuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MenuLateralLayout.createSequentialGroup()
                 .addComponent(FondoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(btnRegistrar)
-                .addGap(52, 52, 52)
+                .addComponent(btnLibros)
+                .addGap(40, 40, 40)
                 .addComponent(btnClientes)
-                .addGap(48, 48, 48)
+                .addGap(39, 39, 39)
                 .addComponent(btnSucursales)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addGap(41, 41, 41)
+                .addComponent(btnReportes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(btnSalir)
                 .addGap(27, 27, 27))
         );
@@ -178,11 +242,59 @@ public class Princial extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+    private void btnLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLibrosActionPerformed
         System.out.println("AAAAAHHHHH");
         Vista.Paneles.Libros l = new Vista.Paneles.Libros();
         GUITools.panelIntoPanel(ContenedorDinamico, l);
-    }//GEN-LAST:event_btnRegistrarActionPerformed
+    }//GEN-LAST:event_btnLibrosActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
+        
+    }//GEN-LAST:event_btnClientesActionPerformed
+
+    private void btnLibrosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLibrosMouseEntered
+        btnLibros.setForeground(Color.BLUE);
+    }//GEN-LAST:event_btnLibrosMouseEntered
+
+    private void btnLibrosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLibrosMouseExited
+        btnLibros.setForeground(Color.WHITE);
+    }//GEN-LAST:event_btnLibrosMouseExited
+
+    private void btnClientesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClientesMouseEntered
+        btnClientes.setForeground(Color.BLUE);
+    }//GEN-LAST:event_btnClientesMouseEntered
+
+    private void btnClientesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClientesMouseExited
+        btnClientes.setForeground(Color.WHITE);
+    }//GEN-LAST:event_btnClientesMouseExited
+
+    private void btnSucursalesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSucursalesMouseEntered
+        btnSucursales.setForeground(Color.BLUE);
+    }//GEN-LAST:event_btnSucursalesMouseEntered
+
+    private void btnSucursalesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSucursalesMouseExited
+        btnSucursales.setForeground(Color.WHITE);
+    }//GEN-LAST:event_btnSucursalesMouseExited
+
+    private void btnReportesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReportesMouseEntered
+        btnReportes.setForeground(Color.BLUE);
+    }//GEN-LAST:event_btnReportesMouseEntered
+
+    private void btnReportesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReportesMouseExited
+        btnReportes.setForeground(Color.WHITE);
+    }//GEN-LAST:event_btnReportesMouseExited
+
+    private void btnSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseEntered
+        btnSalir.setForeground(Color.BLUE);
+    }//GEN-LAST:event_btnSalirMouseEntered
+
+    private void btnSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseExited
+        btnSalir.setForeground(Color.WHITE);
+    }//GEN-LAST:event_btnSalirMouseExited
 
     /**
      * @param args the command line arguments
@@ -224,7 +336,8 @@ public class Princial extends javax.swing.JFrame {
     private javax.swing.JPanel FondoDescripcion;
     private javax.swing.JPanel MenuLateral;
     private javax.swing.JButton btnClientes;
-    private javax.swing.JButton btnRegistrar;
+    private javax.swing.JButton btnLibros;
+    private javax.swing.JButton btnReportes;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnSucursales;
     private javax.swing.JLabel lblBibliotecario;
