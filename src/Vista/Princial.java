@@ -12,8 +12,13 @@ public class Princial extends javax.swing.JFrame {
     /**
      * Creates new form Princial
      */
-    public Princial() {
+    public Princial(String usuario,String password) {
         initComponents();
+        
+    }
+
+    private Princial() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**

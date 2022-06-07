@@ -11,12 +11,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author EduardoCGarcia
  */
-public class ReportesLibros extends javax.swing.JPanel {
+public class ReportesSucursales extends javax.swing.JPanel {
 
     /**
-     * Creates new form ReportesLibros
+     * Creates new form ReportesSolicitaantes
      */
-    public ReportesLibros() {
+    public ReportesSucursales() {
         initComponents();
     }
 
@@ -59,7 +59,6 @@ public class ReportesLibros extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
-
 public static DefaultTableModel setModelAndTableModel(){
         DefaultTableModel modelo =  setColumnsTable();
         //Colocar los valores obtenidos de las tablas de la bases de datos en un arrayList 
@@ -82,10 +81,9 @@ public static DefaultTableModel setColumnsTable(){
         DefaultTableModel modelo =  new DefaultTableModel();
         /*Establecemos las columnas*/
         ArrayList<String> columnas = new ArrayList<String> ();
-        columnas.add("ISBN");
+        columnas.add("Id");
         columnas.add("Nombre");
-        columnas.add("Editorial");
-        columnas.add("Autor");
+        columnas.add("Dirección");
         
         for(Object col:columnas){
             modelo.addColumn(col);
