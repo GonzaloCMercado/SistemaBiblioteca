@@ -6,6 +6,7 @@
 package Vista;
 
 import Modelo.ConexionBD;
+import Utilerias.FondoImagen;
 import java.awt.Color;
 import javax.swing.BorderFactory;
 
@@ -37,7 +38,7 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         Contenedor = new javax.swing.JPanel();
-        Avatar = new Utilerias.FondoImagen("Avatar.jpeg");
+        Avatar = new Utilerias.FondoImagen("mabe.jpeg");
         Encabezado = new javax.swing.JPanel();
         PieDePagina = new javax.swing.JPanel();
         lblUsuario = new javax.swing.JLabel();
@@ -171,6 +172,7 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+        
         ConexionBD c = new ConexionBD();
         try {
 
@@ -182,7 +184,7 @@ public class Login extends javax.swing.JFrame {
 //                l.setLocationRelativeTo(null);
 //                l.setVisible(true);
 //                l.toFront();
-                  
+                Princial o = new Princial(usuario, contraseña);
                 this.dispose();
             } else {
                 txtUsuario.setBorder(BorderFactory.createLineBorder(Color.RED));
