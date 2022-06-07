@@ -102,7 +102,7 @@
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new Utilerias.FondoImagen(&quot;mabe.jpeg&quot;)"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new Utilerias.FondoImagen(&quot;Avatar.jpeg&quot;)"/>
           </AuxValues>
 
           <Layout>

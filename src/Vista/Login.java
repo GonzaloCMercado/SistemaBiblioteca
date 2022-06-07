@@ -38,7 +38,7 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         Contenedor = new javax.swing.JPanel();
-        Avatar = new Utilerias.FondoImagen("mabe.jpeg");
+        Avatar = new Utilerias.FondoImagen("Avatar.jpeg");
         Encabezado = new javax.swing.JPanel();
         PieDePagina = new javax.swing.JPanel();
         lblUsuario = new javax.swing.JLabel();

@@ -26,7 +26,7 @@ public class DeleteClientePanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new Utilerias.FondoNoAjustable("TexturaBlanco.jpeg");
+        jPanel1 = new Utilerias.FondoNoAjustable("TexturaBlanco1.jpeg");
         jButton1 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
