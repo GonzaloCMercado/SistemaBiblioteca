@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Vista;
 
 import Utilerias.GUITools;
@@ -244,7 +239,8 @@ public class Princial extends javax.swing.JFrame {
 
     private void btnLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLibrosActionPerformed
         System.out.println("AAAAAHHHHH");
-        Vista.Paneles.Libros l = new Vista.Paneles.Libros();
+        app.typePanelCD = "LIBRO";
+        Vista.Paneles.PanelCD l = new Vista.Paneles.PanelCD();
         GUITools.panelIntoPanel(ContenedorDinamico, l);
     }//GEN-LAST:event_btnLibrosActionPerformed
 
@@ -295,6 +291,20 @@ public class Princial extends javax.swing.JFrame {
     private void btnSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseExited
         btnSalir.setForeground(Color.WHITE);
     }//GEN-LAST:event_btnSalirMouseExited
+
+    private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
+        System.out.println("AAAAAHHHHH");
+        app.typePanelCD = "CLIENTES";
+        Vista.Paneles.PanelCD l = new Vista.Paneles.PanelCD();
+        GUITools.panelIntoPanel(ContenedorDinamico, l);
+    }//GEN-LAST:event_btnClientesActionPerformed
+
+    private void btnSucursalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSucursalesActionPerformed
+        System.out.println("AAAAAHHHHH");
+        app.typePanelCD = "SUCURSAL";
+        Vista.Paneles.PanelCD l = new Vista.Paneles.PanelCD();
+        GUITools.panelIntoPanel(ContenedorDinamico, l);
+    }//GEN-LAST:event_btnSucursalesActionPerformed
 
     /**
      * @param args the command line arguments
