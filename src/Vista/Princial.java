@@ -27,13 +27,13 @@ public class Princial extends javax.swing.JFrame {
 
         MenuLateral = new javax.swing.JPanel();
         btnLibros = new javax.swing.JButton();
-        btnClientes = new javax.swing.JButton();
         btnSucursales = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         FondoDescripcion = new javax.swing.JPanel();
         lblSistema = new javax.swing.JLabel();
         lblBibliotecario = new javax.swing.JLabel();
         btnReportes = new javax.swing.JButton();
+        btnCliente = new javax.swing.JButton();
         ContenedorDinamico = new Utilerias.FondoNoAjustable("TexturaBlanco1.jpeg");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -61,26 +61,6 @@ public class Princial extends javax.swing.JFrame {
             }
         });
 
-        btnClientes.setBackground(new java.awt.Color(255, 255, 255));
-        btnClientes.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
-        btnClientes.setForeground(new java.awt.Color(255, 255, 255));
-        btnClientes.setText("Clientes");
-        btnClientes.setBorder(null);
-        btnClientes.setContentAreaFilled(false);
-        btnClientes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnClientesMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnClientesMouseExited(evt);
-            }
-        });
-        btnClientes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClientesActionPerformed(evt);
-            }
-        });
-
         btnSucursales.setBackground(new java.awt.Color(255, 255, 255));
         btnSucursales.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
         btnSucursales.setForeground(new java.awt.Color(255, 255, 255));
@@ -93,6 +73,11 @@ public class Princial extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnSucursalesMouseExited(evt);
+            }
+        });
+        btnSucursales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSucursalesActionPerformed(evt);
             }
         });
 
@@ -166,6 +151,31 @@ public class Princial extends javax.swing.JFrame {
                 btnReportesMouseExited(evt);
             }
         });
+        btnReportes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportesActionPerformed(evt);
+            }
+        });
+
+        btnCliente.setBackground(new java.awt.Color(255, 255, 255));
+        btnCliente.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
+        btnCliente.setForeground(new java.awt.Color(255, 255, 255));
+        btnCliente.setText("Clientes");
+        btnCliente.setBorder(null);
+        btnCliente.setContentAreaFilled(false);
+        btnCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnClienteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnClienteMouseExited(evt);
+            }
+        });
+        btnCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClienteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout MenuLateralLayout = new javax.swing.GroupLayout(MenuLateral);
         MenuLateral.setLayout(MenuLateralLayout);
@@ -175,20 +185,19 @@ public class Princial extends javax.swing.JFrame {
             .addGroup(MenuLateralLayout.createSequentialGroup()
                 .addGroup(MenuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(MenuLateralLayout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(btnLibros))
-                    .addGroup(MenuLateralLayout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(btnClientes))
-                    .addGroup(MenuLateralLayout.createSequentialGroup()
                         .addGap(54, 54, 54)
                         .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(MenuLateralLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(btnReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(MenuLateralLayout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addComponent(btnSucursales))
                     .addGroup(MenuLateralLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(btnReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(56, 56, 56)
+                        .addGroup(MenuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnCliente)
+                            .addComponent(btnLibros))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         MenuLateralLayout.setVerticalGroup(
@@ -197,9 +206,9 @@ public class Princial extends javax.swing.JFrame {
                 .addComponent(FondoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(btnLibros)
-                .addGap(40, 40, 40)
-                .addComponent(btnClientes)
-                .addGap(39, 39, 39)
+                .addGap(44, 44, 44)
+                .addComponent(btnCliente)
+                .addGap(35, 35, 35)
                 .addComponent(btnSucursales)
                 .addGap(41, 41, 41)
                 .addComponent(btnReportes)
@@ -248,9 +257,9 @@ public class Princial extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
+    private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {                                            
         
-    }//GEN-LAST:event_btnClientesActionPerformed
+    }                                           
 
     private void btnLibrosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLibrosMouseEntered
         btnLibros.setForeground(Color.BLUE);
@@ -259,14 +268,6 @@ public class Princial extends javax.swing.JFrame {
     private void btnLibrosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLibrosMouseExited
         btnLibros.setForeground(Color.WHITE);
     }//GEN-LAST:event_btnLibrosMouseExited
-
-    private void btnClientesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClientesMouseEntered
-        btnClientes.setForeground(Color.BLUE);
-    }//GEN-LAST:event_btnClientesMouseEntered
-
-    private void btnClientesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClientesMouseExited
-        btnClientes.setForeground(Color.WHITE);
-    }//GEN-LAST:event_btnClientesMouseExited
 
     private void btnSucursalesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSucursalesMouseEntered
         btnSucursales.setForeground(Color.BLUE);
@@ -292,19 +293,29 @@ public class Princial extends javax.swing.JFrame {
         btnSalir.setForeground(Color.WHITE);
     }//GEN-LAST:event_btnSalirMouseExited
 
-    private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
-        System.out.println("AAAAAHHHHH");
-        app.typePanelCD = "CLIENTES";
+    private void btnClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClienteMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnClienteMouseEntered
+
+    private void btnClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClienteMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnClienteMouseExited
+
+    private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed
+        app.typePanelCD = "CLIENTE";
         Vista.Paneles.PanelCD l = new Vista.Paneles.PanelCD();
         GUITools.panelIntoPanel(ContenedorDinamico, l);
-    }//GEN-LAST:event_btnClientesActionPerformed
+    }//GEN-LAST:event_btnClienteActionPerformed
 
     private void btnSucursalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSucursalesActionPerformed
-        System.out.println("AAAAAHHHHH");
-        app.typePanelCD = "SUCURSAL";
+        app.typePanelCD = "SUCURSALES";
         Vista.Paneles.PanelCD l = new Vista.Paneles.PanelCD();
         GUITools.panelIntoPanel(ContenedorDinamico, l);
     }//GEN-LAST:event_btnSucursalesActionPerformed
+
+    private void btnReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnReportesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -345,7 +356,7 @@ public class Princial extends javax.swing.JFrame {
     private javax.swing.JPanel ContenedorDinamico;
     private javax.swing.JPanel FondoDescripcion;
     private javax.swing.JPanel MenuLateral;
-    private javax.swing.JButton btnClientes;
+    private javax.swing.JButton btnCliente;
     private javax.swing.JButton btnLibros;
     private javax.swing.JButton btnReportes;
     private javax.swing.JButton btnSalir;
