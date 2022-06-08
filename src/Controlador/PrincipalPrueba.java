@@ -6,7 +6,8 @@
 package Controlador;
 
 import Modelo.ConexionBD;
-
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 /**
  *
  * @author Gonzalo CH
@@ -17,30 +18,27 @@ public class PrincipalPrueba {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-//        try {
-//            ConexionBD p = new ConexionBD();
-//            p.estableceConexion("Gonzalo", "z8*A+h59*e");
-//
-//            PreparedStatement pst, pst2, pst3; //Se crean dos objetos de tipo PreparedStatement que nos servira para interactuar con la BD
-//            //Ingrezar datos personales
-//            pst = p.cn.prepareStatement("DELETE FROM tabla WHERE id = ?"); //Se realiza la insercion pero aun no se mandan datos
-//
-//            pst.setString(1, ); //Se indica el valor del ID pero al ser autoincrementable este se ignora (aun asi se debe enviar)
-//            pst.setString(2, txtNombre.getText().toUpperCase()); //Se indica la cadena nombre a enviar en el campo nombre
-//            pst.setString(3, txtApellidoPaterno.getText().toUpperCase().trim()); //Se indica la cadena Apellido Paterno
-//            pst.setString(4, JPanelDatosPersonales.txtApellidoMaterno.getText().toUpperCase().trim()); //Se indica el apellido materno
-//            pst.setString(5, JPanelDatosPersonales.txtCorreo.getText().trim());
-//            pst.setString(6, JPanelDatosPersonales.txtTel.getText().trim());
-//            String fecha = JPanelDatosPersonales.txtAño.getText().trim() + "/" + JPanelDatosPersonales.txtMes.getText().trim() + "/" + JPanelDatosPersonales.txtDia.getText().trim();
-//            pst.setString(7, fecha);
-//            pst.setString(8, JPanelDatosPersonales.txtCalle.getText().toUpperCase().trim());
-//            pst.setString(9, JPanelDatosPersonales.txtColonia.getText().toUpperCase().trim());
-//            pst.setString(10, JPanelDatosPersonales.txtMunicipio.getText().toUpperCase().trim());
-//            pst.setString(11, JPanelDatosPersonales.txtEstado.getText().toUpperCase().trim());
-//
-//            pst.executeUpdate();
-//        } catch (Exception e) {
-//        }
+        String reporte1 = "";
+        try {
+            ConexionBD conexion = new ConexionBD();
+            conexion.estableceConexion();
+            //Procedimiento para buscar a un alumno por medio de su ID
+            PreparedStatement pst,pst2;
+            pst = conexion.cn.prepareStatement("SELECT libro.Nombre AS nombre_libro, lector.Nombre \n" +
+                                                "AS nombre_lector, prestamos.Fecha_Sale FROM libro,lector,prestamos \n" +
+                                                "where libro.ID_Libro = prestamos.ID_Libro \n" +
+                                                "AND lector.Num_Targeta = prestamos.Num_Targeta\n" +
+                                                "ORDER BY prestamos.Fecha_Sale");
+            //pst.executeUpdate();//Se ejecuta la instruccion
 
+            ResultSet rs = pst.executeQuery();
+            while(rs.next()){
+                reporte1 += String.format("%s %s %s\n", rs.getString("nombre_libro"),rs.getString("nombre_lector"),rs.getString("Fecha_Sale"));
+                
+            }
+            System.out.println(reporte1);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 }

@@ -7,12 +7,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author EduardoCGarcia
  */
-public class ReportesLectores extends javax.swing.JPanel {
+public class Reporte3 extends javax.swing.JPanel {
 
     /**
      * Creates new form ReportesLibros
      */
-    public ReportesLectores() {
+    public Reporte3() {
         initComponents();
     }
 
@@ -84,10 +84,6 @@ public static DefaultTableModel setModelAndTableModel(){
     }
 
 public static DefaultTableModel setColumnsTable(){
-    
-        /*Nombre de los libros que hayan sido solicitados para préstamos
-        que además incluya nombre del lector y fecha de solicitud, 
-        ordenado por fecha.*/
         DefaultTableModel modelo =  new DefaultTableModel();
         /*Establecemos las columnas*/
         
