@@ -14,11 +14,15 @@ public class Princial extends javax.swing.JFrame {
      */
     public Princial(String usuario,String password) {
         initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
         
     }
 
     private Princial() {
-        initComponents();// Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
     }
 
     /**
