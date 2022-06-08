@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package Vista.Paneles.Reportes;
 
 import java.util.ArrayList;
@@ -11,12 +7,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author EduardoCGarcia
  */
-public class ReportesLibros extends javax.swing.JPanel {
+public class ReportesPrestamos extends javax.swing.JPanel {
 
     /**
      * Creates new form ReportesLibros
      */
-    public ReportesLibros() {
+    public ReportesPrestamos() {
         initComponents();
     }
 
@@ -29,9 +25,14 @@ public class ReportesLibros extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+
+        jLabel1.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Listado de libros con los que cuenta cada sucursal de biblioteca");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -43,33 +44,33 @@ public class ReportesLibros extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel1.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Listado de libros con los que cuenta cada sucursal de biblioteca");
+        jLabel2.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Nombre de los libros que hayan sido solicitados para préstamos");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
-
 public static DefaultTableModel setModelAndTableModel(){
         DefaultTableModel modelo =  setColumnsTable();
         //Colocar los valores obtenidos de las tablas de la bases de datos en un arrayList 
@@ -89,19 +90,17 @@ public static DefaultTableModel setModelAndTableModel(){
     }
 
 public static DefaultTableModel setColumnsTable(){
-        /*Listado de libros con los que cuenta cada sucursal de
-        biblioteca, deberá incluir nombre del autor y nombre de 
-        la editorial.
     
-    
-    */
+        /*Nombre de los libros que hayan sido solicitados para préstamos
+        que además incluya nombre del lector y fecha de solicitud, 
+        ordenado por fecha.*/
         DefaultTableModel modelo =  new DefaultTableModel();
         /*Establecemos las columnas*/
+        
         ArrayList<String> columnas = new ArrayList<String> ();
         columnas.add("Libro");
-        columnas.add("Autor");
-        columnas.add("Editorial");
-        columnas.add("Surcursal");
+        columnas.add("Lector");
+        columnas.add("Fecha de salida");
         
         for(Object col:columnas){
             modelo.addColumn(col);
