@@ -14,6 +14,7 @@ public class Reporte3 extends javax.swing.JPanel {
      */
     public Reporte3() {
         initComponents();
+        jTable1.setModel(setModelAndTableModel());
     }
 
     /**

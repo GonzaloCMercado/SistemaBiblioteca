@@ -143,6 +143,9 @@
               <Font name="Dialog" size="18" style="1"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNombreLibroKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="cboxEditorial">
           <Properties>

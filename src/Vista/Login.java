@@ -26,6 +26,15 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        deshabilitarBotonRegistrar();
+    }
+    
+        public void deshabilitarBotonRegistrar() {
+        if (txtUsuario.getText().isBlank()) {
+            btnIngresar.setEnabled(false);
+        } else {
+            btnIngresar.setEnabled(true);
+        }
     }
 
     /**
@@ -101,6 +110,16 @@ public class Login extends javax.swing.JFrame {
         lblPassword.setText("Contraseña:");
 
         txtUsuario.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsuarioActionPerformed(evt);
+            }
+        });
+        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtUsuarioKeyReleased(evt);
+            }
+        });
 
         txtPassword.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
@@ -109,6 +128,11 @@ public class Login extends javax.swing.JFrame {
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIngresarActionPerformed(evt);
+            }
+        });
+        btnIngresar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                btnIngresarKeyReleased(evt);
             }
         });
 
@@ -194,6 +218,18 @@ public class Login extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuarioActionPerformed
+
+    private void btnIngresarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnIngresarKeyReleased
+        
+    }//GEN-LAST:event_btnIngresarKeyReleased
+
+    private void txtUsuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyReleased
+        deshabilitarBotonRegistrar();
+    }//GEN-LAST:event_txtUsuarioKeyReleased
 
     /**
      * @param args the command line arguments
