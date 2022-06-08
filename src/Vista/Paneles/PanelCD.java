@@ -7,6 +7,10 @@ import Vista.Paneles.Eliminar.DeleteSucursalPanel;
 import Vista.Paneles.Registrar.CreateClientePanel;
 import Vista.Paneles.Registrar.CreateLibrosPanel;
 import Vista.Paneles.Registrar.CreateSucursalPanel;
+import Vista.Paneles.Reportes.ReportesLectores;
+import Vista.Paneles.Reportes.ReportesLibros;
+import Vista.Paneles.Reportes.ReportesLibrosPrestamos;
+import Vista.Paneles.Reportes.ReportesPrestamos;
 import Vista.app;
 
 /**
@@ -21,6 +25,7 @@ public class PanelCD extends javax.swing.JPanel {
     public PanelCD() {
         initComponents();
         lblTitle.setText(app.typePanelCD);
+        cbxNombreReporte.setVisible(false);
     }
 
     /**
@@ -46,6 +51,11 @@ public class PanelCD extends javax.swing.JPanel {
 
         jComboBox1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Registrar", "Eliminar", "Reportes" }));
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -74,7 +84,13 @@ public class PanelCD extends javax.swing.JPanel {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
+        cbxNombreReporte.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         cbxNombreReporte.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre de los libros que hayan sido solicitados para préstamos.", "Listado de libros con los que cuenta cada sucursal de biblioteca.", "Listado de libros que están en préstamo de acuerdo a una fecha de salida.", "Listado de los lectores que han solicitado libros en una fecha de devolucion." }));
+        cbxNombreReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxNombreReporteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout FondoLayout = new javax.swing.GroupLayout(Fondo);
         Fondo.setLayout(FondoLayout);
@@ -143,7 +159,19 @@ public class PanelCD extends javax.swing.JPanel {
                 CreateLibrosPanel p = new CreateLibrosPanel();
                 GUITools.panelIntoPanel(this, p);
             } else {
-                //Reportes
+                if (cbxNombreReporte.getSelectedIndex() == 0) {
+                    ReportesPrestamos lib = new ReportesPrestamos();
+                    GUITools.panelIntoPanel(this, lib);
+                } else if (cbxNombreReporte.getSelectedIndex() == 1) {
+                    ReportesLibros lib = new ReportesLibros();
+                    GUITools.panelIntoPanel(this, lib);
+                } else if (cbxNombreReporte.getSelectedIndex() == 2) {
+                    ReportesLibrosPrestamos lib = new ReportesLibrosPrestamos();
+                    GUITools.panelIntoPanel(this, lib);
+                } else {
+                    ReportesLectores lib = new ReportesLectores();
+                    GUITools.panelIntoPanel(this, lib);
+                }
             }
         }
 
@@ -167,6 +195,18 @@ public class PanelCD extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_btnContinuarActionPerformed
+
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        if (jComboBox1.getSelectedIndex() != 2) {
+            cbxNombreReporte.setVisible(false);
+        } else {
+            cbxNombreReporte.setVisible(true);
+        }
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
+
+    private void cbxNombreReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxNombreReporteActionPerformed
+
+    }//GEN-LAST:event_cbxNombreReporteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

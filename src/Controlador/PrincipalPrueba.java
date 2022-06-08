@@ -17,6 +17,7 @@ public class PrincipalPrueba {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
 //        try {
 //            ConexionBD p = new ConexionBD();
 //            p.estableceConexion("Gonzalo", "z8*A+h59*e");

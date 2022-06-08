@@ -17,6 +17,16 @@ public class CreateClientePanel extends javax.swing.JPanel {
      */
     public CreateClientePanel() {
         initComponents();
+        deshabilitarBotonRegistrar();
+    }
+
+    public void deshabilitarBotonRegistrar() {
+        if (txtNombre.getText().isBlank() || txtDireccion.getText().isBlank() || txtTarjeta.getText().isBlank()
+                || txtTelefono.getText().isBlank() || txtEmail.getText().isBlank()) {
+            btnAgregar.setEnabled(false);
+        } else {
+            btnAgregar.setEnabled(true);
+        }
     }
 
     /**
@@ -41,7 +51,7 @@ public class CreateClientePanel extends javax.swing.JPanel {
         txtTelefono = new javax.swing.JTextField();
         lblEmail = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -53,10 +63,28 @@ public class CreateClientePanel extends javax.swing.JPanel {
         lblNombre.setForeground(new java.awt.Color(0, 0, 0));
         lblNombre.setText("Nombre:");
 
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreKeyReleased(evt);
+            }
+        });
+
         lblTarjeta.setBackground(new java.awt.Color(0, 0, 0));
         lblTarjeta.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblTarjeta.setForeground(new java.awt.Color(0, 0, 0));
         lblTarjeta.setText("Tarjeta:");
+
+        txtTarjeta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTarjetaKeyReleased(evt);
+            }
+        });
+
+        txtDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDireccionKeyReleased(evt);
+            }
+        });
 
         lblDireccion.setBackground(new java.awt.Color(0, 0, 0));
         lblDireccion.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -68,15 +96,28 @@ public class CreateClientePanel extends javax.swing.JPanel {
         lblTelefono.setForeground(new java.awt.Color(0, 0, 0));
         lblTelefono.setText("Telefono:");
 
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyReleased(evt);
+            }
+        });
+
         lblEmail.setBackground(new java.awt.Color(0, 0, 0));
         lblEmail.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblEmail.setForeground(new java.awt.Color(0, 0, 0));
         lblEmail.setText("Email:");
 
-        jButton1.setText("Agregar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtEmailKeyReleased(evt);
+            }
+        });
+
+        btnAgregar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAgregarActionPerformed(evt);
             }
         });
 
@@ -113,7 +154,7 @@ public class CreateClientePanel extends javax.swing.JPanel {
                                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(105, 105, 105))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(btnAgregar)
                         .addGap(299, 299, 299))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -142,8 +183,8 @@ public class CreateClientePanel extends javax.swing.JPanel {
                     .addComponent(lblEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45)
-                .addComponent(jButton1)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addComponent(btnAgregar)
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -158,13 +199,33 @@ public class CreateClientePanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         JOptionPane.showMessageDialog(null, "Cliente creado");
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void txtTarjetaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTarjetaKeyReleased
+        deshabilitarBotonRegistrar();
+    }//GEN-LAST:event_txtTarjetaKeyReleased
+
+    private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
+        deshabilitarBotonRegistrar();
+    }//GEN-LAST:event_txtNombreKeyReleased
+
+    private void txtDireccionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyReleased
+        deshabilitarBotonRegistrar();
+    }//GEN-LAST:event_txtDireccionKeyReleased
+
+    private void txtTelefonoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyReleased
+        deshabilitarBotonRegistrar();
+    }//GEN-LAST:event_txtTelefonoKeyReleased
+
+    private void txtEmailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyReleased
+        deshabilitarBotonRegistrar();
+    }//GEN-LAST:event_txtEmailKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnAgregar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblDireccion;

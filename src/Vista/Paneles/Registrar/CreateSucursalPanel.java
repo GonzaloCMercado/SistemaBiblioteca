@@ -15,6 +15,15 @@ public class CreateSucursalPanel extends javax.swing.JPanel {
      */
     public CreateSucursalPanel() {
         initComponents();
+        deshabilitarBotonRegistrar();
+    }
+    
+        public void deshabilitarBotonRegistrar() {
+        if (txtNombre.getText().isBlank() || txtDireccion.getText().isBlank()) {
+            btnRegistrar.setEnabled(false);
+        } else {
+            btnRegistrar.setEnabled(true);
+        }
     }
 
     /**
@@ -49,7 +58,13 @@ public class CreateSucursalPanel extends javax.swing.JPanel {
         lblDireccion.setForeground(new java.awt.Color(0, 0, 0));
         lblDireccion.setText("Dirección:");
 
+        btnRegistrar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnRegistrar.setText("Registrar");
+        btnRegistrar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                btnRegistrarKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -75,7 +90,7 @@ public class CreateSucursalPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnRegistrar)
                         .addGap(129, 129, 129)))
-                .addContainerGap(146, Short.MAX_VALUE))
+                .addContainerGap(135, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,7 +105,7 @@ public class CreateSucursalPanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDireccion)
                     .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addComponent(btnRegistrar)
                 .addGap(67, 67, 67))
         );
@@ -106,6 +121,10 @@ public class CreateSucursalPanel extends javax.swing.JPanel {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRegistrarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnRegistrarKeyReleased
+        deshabilitarBotonRegistrar();
+    }//GEN-LAST:event_btnRegistrarKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

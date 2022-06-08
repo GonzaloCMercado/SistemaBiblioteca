@@ -15,6 +15,15 @@ public class CreateLibrosPanel extends javax.swing.JPanel {
      */
     public CreateLibrosPanel() {
         initComponents();
+        deshabilitarBotonRegistrar();
+    }
+    
+        public void deshabilitarBotonRegistrar() {
+        if (txtNombreLibro.getText().isBlank()) {
+            btnRegistrar.setEnabled(false);
+        } else {
+            btnRegistrar.setEnabled(true);
+        }
     }
 
     /**
@@ -52,6 +61,11 @@ public class CreateLibrosPanel extends javax.swing.JPanel {
         lblAutor.setText("Autor:");
 
         txtNombreLibro.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        txtNombreLibro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreLibroKeyReleased(evt);
+            }
+        });
 
         cboxEditorial.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -123,6 +137,10 @@ public class CreateLibrosPanel extends javax.swing.JPanel {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtNombreLibroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreLibroKeyReleased
+        deshabilitarBotonRegistrar();
+    }//GEN-LAST:event_txtNombreLibroKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

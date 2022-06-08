@@ -14,6 +14,7 @@ public class ReportesLectores extends javax.swing.JPanel {
      */
     public ReportesLectores() {
         initComponents();
+        jTable1.setModel(setModelAndTableModel());
     }
 
     /**

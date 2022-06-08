@@ -1,5 +1,6 @@
 package Vista.Paneles.Reportes;
 
+
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -14,6 +15,7 @@ public class ReportesPrestamos extends javax.swing.JPanel {
      */
     public ReportesPrestamos() {
         initComponents();
+        jTable1.setModel(setModelAndTableModel());
     }
 
     /**

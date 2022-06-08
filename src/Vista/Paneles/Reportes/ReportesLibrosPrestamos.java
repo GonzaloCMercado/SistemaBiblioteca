@@ -18,6 +18,7 @@ public class ReportesLibrosPrestamos extends javax.swing.JPanel {
      */
     public ReportesLibrosPrestamos() {
         initComponents();
+        jTable1.setModel(setModelAndTableModel());
     }
 
     /**
