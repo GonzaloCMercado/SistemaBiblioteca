@@ -7,10 +7,7 @@ import Vista.Paneles.Eliminar.DeleteSucursalPanel;
 import Vista.Paneles.Registrar.CreateClientePanel;
 import Vista.Paneles.Registrar.CreateLibrosPanel;
 import Vista.Paneles.Registrar.CreateSucursalPanel;
-import Vista.Paneles.Reportes.ReportesLectores;
-import Vista.Paneles.Reportes.ReportesLibros;
-import Vista.Paneles.Reportes.ReportesLibrosPrestamos;
-import Vista.Paneles.Reportes.ReportesPrestamos;
+import Vista.Paneles.Reportes.*;
 import Vista.app;
 
 /**
@@ -160,16 +157,16 @@ public class PanelCD extends javax.swing.JPanel {
                 GUITools.panelIntoPanel(this, p);
             } else {
                 if (cbxNombreReporte.getSelectedIndex() == 0) {
-                    ReportesPrestamos lib = new ReportesPrestamos();
+                    Reporte1 lib = new Reporte1();
                     GUITools.panelIntoPanel(this, lib);
                 } else if (cbxNombreReporte.getSelectedIndex() == 1) {
-                    ReportesLibros lib = new ReportesLibros();
+                    Reportes2 lib = new Reportes2();
                     GUITools.panelIntoPanel(this, lib);
                 } else if (cbxNombreReporte.getSelectedIndex() == 2) {
-                    ReportesLibrosPrestamos lib = new ReportesLibrosPrestamos();
+                    Reporte3 lib = new Reporte3();
                     GUITools.panelIntoPanel(this, lib);
                 } else {
-                    ReportesLectores lib = new ReportesLectores();
+                    Reporte4 lib = new Reporte4();
                     GUITools.panelIntoPanel(this, lib);
                 }
             }

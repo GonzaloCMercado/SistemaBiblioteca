@@ -11,7 +11,9 @@ import java.util.ArrayList;
  */
 public class DML {
     public static ArrayList primerReporte(){
-        ArrayList reporte1 = new ArrayList();
+        ArrayList<ArrayList> reporte1 = new ArrayList();
+        ArrayList<String> renglones = new ArrayList<String>();
+        
         try {
             ConexionBD conexion = new ConexionBD();
             conexion.estableceConexion();
@@ -24,8 +26,16 @@ public class DML {
                                                 "ORDER BY prestamos.Fecha_Sale");
 
             ResultSet rs = pst.executeQuery();
+            int i = 0;
             while(rs.next()){
-                 reporte1.add(String.format("%s %s %s\n", rs.getString("nombre_libro"),rs.getString("nombre_lector"),rs.getString("Fecha_Sale")));
+                renglones.add(rs.getString("nombre_libro"));
+                renglones.add(rs.getString("nombre_lector"));
+                renglones.add(rs.getString("Fecha_Sale"));
+                reporte1.add(renglones);
+                renglones.removeAll(renglones);
+            }
+            for (ArrayList r : reporte1) {
+                System.out.println(r.get(1) + " " + r.get(0) + " " + r.get(1) + " " + r.get(2));
                 
             }
             

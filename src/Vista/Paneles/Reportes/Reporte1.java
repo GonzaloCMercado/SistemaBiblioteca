@@ -1,6 +1,7 @@
 package Vista.Paneles.Reportes;
 
 
+import DML.DML;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -75,19 +76,13 @@ public class Reporte1 extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 public static DefaultTableModel setModelAndTableModel(){
         DefaultTableModel modelo =  setColumnsTable();
-        //Colocar los valores obtenidos de las tablas de la bases de datos en un arrayList 
-        //dicho arraylist debe ser iterado en el foreach que esta abajo y en cada String 
-        //colocar los atributos que sean creados, a que estos seran los renglones
-//        for (Maicitos m : Main.maicitos) {
-//            String filas[]={
-//                String.format("%d",m.getId()),
-//                m.getSabor(),
-//                String.format("%.2f",m.getPrecio()),
-//                String.format("%d",m.getTam()),
-//                String.format("%d",m.getCantidad())
-//            };
-//            modelo.addRow(filas);
-//        }
+        ArrayList reporte = DML.primerReporte();
+        for (Object m : reporte) {
+            String filas[]={
+                String.format("%d",m),
+            };
+            modelo.addRow(filas);
+        }
         return modelo;
     }
 
