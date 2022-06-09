@@ -12,12 +12,22 @@ import javax.swing.JOptionPane;
  */
 public class CreateClientePanel extends javax.swing.JPanel {
 
+    private String usuario;
+    private String password;
+
     /**
      * Creates new form Cliente
      */
     public CreateClientePanel() {
         initComponents();
         deshabilitarBotonRegistrar();
+    }
+
+    public CreateClientePanel(String usuario, String password) {
+        initComponents();
+        deshabilitarBotonRegistrar();
+        this.usuario = usuario;
+        this.password = password;
     }
 
     public void deshabilitarBotonRegistrar() {

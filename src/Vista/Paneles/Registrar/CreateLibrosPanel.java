@@ -4,11 +4,20 @@
  */
 package Vista.Paneles.Registrar;
 
+import Modelo.ConexionBD;
+import Vista.app;
+import java.util.ArrayList;
+import java.sql.ResultSet;
+import java.sql.PreparedStatement;
+
 /**
  *
- * @author EduardoCGarcia
+ * @author
  */
 public class CreateLibrosPanel extends javax.swing.JPanel {
+
+    private String usuario;
+    private String password;
 
     /**
      * Creates new form Libros
@@ -17,14 +26,31 @@ public class CreateLibrosPanel extends javax.swing.JPanel {
         initComponents();
         deshabilitarBotonRegistrar();
     }
-    
-        public void deshabilitarBotonRegistrar() {
+
+    public CreateLibrosPanel(String usuario, String password) {
+        initComponents();
+        deshabilitarBotonRegistrar();
+        this.usuario = usuario;
+        this.password = password;
+    }
+
+    public void deshabilitarBotonRegistrar() {
         if (txtNombreLibro.getText().isBlank()) {
             btnRegistrar.setEnabled(false);
         } else {
             btnRegistrar.setEnabled(true);
         }
     }
+
+//    private void llenarCboxEditorial() {
+//
+//        ArrayList editoriales = new ArrayList();
+//        PreparedStatement pst;
+//        ResultSet rs;
+//
+//        pst = 
+//        
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -68,6 +94,11 @@ public class CreateLibrosPanel extends javax.swing.JPanel {
         });
 
         cboxEditorial.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboxEditorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboxEditorialActionPerformed(evt);
+            }
+        });
 
         cboxAutor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -141,6 +172,10 @@ public class CreateLibrosPanel extends javax.swing.JPanel {
     private void txtNombreLibroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreLibroKeyReleased
         deshabilitarBotonRegistrar();
     }//GEN-LAST:event_txtNombreLibroKeyReleased
+
+    private void cboxEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxEditorialActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboxEditorialActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

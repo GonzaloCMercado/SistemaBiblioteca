@@ -9,12 +9,22 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Reporte4 extends javax.swing.JPanel {
 
+    private String usuario;
+    private String password;
+
     /**
      * Creates new form ReportesLibros
      */
     public Reporte4() {
         initComponents();
         jTable1.setModel(setModelAndTableModel());
+    }
+
+    public Reporte4(String usuario, String password) {
+        initComponents();
+        jTable1.setModel(setModelAndTableModel());
+        this.usuario = usuario;
+        this.password = password;
     }
 
     /**
@@ -66,8 +76,8 @@ public class Reporte4 extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
-public static DefaultTableModel setModelAndTableModel(){
-        DefaultTableModel modelo =  setColumnsTable();
+public static DefaultTableModel setModelAndTableModel() {
+        DefaultTableModel modelo = setColumnsTable();
         //Colocar los valores obtenidos de las tablas de la bases de datos en un arrayList 
         //dicho arraylist debe ser iterado en el foreach que esta abajo y en cada String 
         //colocar los atributos que sean creados, a que estos seran los renglones
@@ -84,17 +94,17 @@ public static DefaultTableModel setModelAndTableModel(){
         return modelo;
     }
 
-public static DefaultTableModel setColumnsTable(){
-        DefaultTableModel modelo =  new DefaultTableModel();
+    public static DefaultTableModel setColumnsTable() {
+        DefaultTableModel modelo = new DefaultTableModel();
         /*Establecemos las columnas*/
-        
-        ArrayList<String> columnas = new ArrayList<String> ();
+
+        ArrayList<String> columnas = new ArrayList<String>();
         columnas.add("Nombre");
-        
-        for(Object col:columnas){
+
+        for (Object col : columnas) {
             modelo.addColumn(col);
         }
         return modelo;
     }
-    
+
 }

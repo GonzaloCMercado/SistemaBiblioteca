@@ -8,7 +8,8 @@ import java.awt.Color;
  * @author Gonzalo CH
  */
 public class Princial extends javax.swing.JFrame {
-
+    private String usuario;
+    private String password;
     /**
      * Creates new form Princial
      */
@@ -16,6 +17,8 @@ public class Princial extends javax.swing.JFrame {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        this.usuario = usuario;
+        this.password = password;
         
     }
 
@@ -233,6 +236,7 @@ public class Princial extends javax.swing.JFrame {
     private void btnLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLibrosActionPerformed
         app.typePanelCD = "LIBRO";
         Vista.Paneles.PanelCD l = new Vista.Paneles.PanelCD();
+        //Vista.Paneles.PanelCD l = new Vista.Paneles.PanelCD(this.usuario,this.password);
         GUITools.panelIntoPanel(ContenedorDinamico, l);
     }//GEN-LAST:event_btnLibrosActionPerformed
 

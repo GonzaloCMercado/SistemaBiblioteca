@@ -10,6 +10,9 @@ package Vista.Paneles.Eliminar;
  */
 public class DeleteClientePanel extends javax.swing.JPanel {
 
+    private String usuario;
+    private String password;
+
     /**
      * Creates new form DeleteClientePanel
      */
@@ -17,8 +20,15 @@ public class DeleteClientePanel extends javax.swing.JPanel {
         initComponents();
         deshabilitarBotonRegistrar();
     }
-    
-        public void deshabilitarBotonRegistrar() {
+
+    public DeleteClientePanel(String usuario, String password) {
+        initComponents();
+        deshabilitarBotonRegistrar();
+        this.usuario = usuario;
+        this.password = password;
+    }
+
+    public void deshabilitarBotonRegistrar() {
         if (txtId.getText().isBlank()) {
             btnEliminar.setEnabled(false);
         } else {
@@ -115,7 +125,7 @@ public class DeleteClientePanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        
+
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed

@@ -10,6 +10,9 @@ package Vista.Paneles.Registrar;
  */
 public class CreateSucursalPanel extends javax.swing.JPanel {
 
+    private String usuario;
+    private String password;
+
     /**
      * Creates new form CreateSucursalPanel
      */
@@ -17,8 +20,15 @@ public class CreateSucursalPanel extends javax.swing.JPanel {
         initComponents();
         deshabilitarBotonRegistrar();
     }
-    
-        public void deshabilitarBotonRegistrar() {
+
+    public CreateSucursalPanel(String usuario, String password) {
+        initComponents();
+        deshabilitarBotonRegistrar();
+        this.usuario = usuario;
+        this.password = password;
+    }
+
+    public void deshabilitarBotonRegistrar() {
         if (txtNombre.getText().isBlank() || txtDireccion.getText().isBlank()) {
             btnRegistrar.setEnabled(false);
         } else {

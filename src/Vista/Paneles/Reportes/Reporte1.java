@@ -1,6 +1,5 @@
 package Vista.Paneles.Reportes;
 
-
 import DML.DML;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -11,12 +10,22 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Reporte1 extends javax.swing.JPanel {
 
+    private String usuario;
+    private String password;
+
     /**
      * Creates new form ReportesLibros
      */
     public Reporte1() {
         initComponents();
         jTable1.setModel(setModelAndTableModel());
+    }
+
+    public Reporte1(String usuario, String password) {
+        initComponents();
+        jTable1.setModel(setModelAndTableModel());
+        this.usuario = usuario;
+        this.password = password;
     }
 
     /**
@@ -74,35 +83,34 @@ public class Reporte1 extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
-public static DefaultTableModel setModelAndTableModel(){
-        DefaultTableModel modelo =  setColumnsTable();
+public static DefaultTableModel setModelAndTableModel() {
+        DefaultTableModel modelo = setColumnsTable();
         ArrayList reporte = DML.primerReporte();
         for (Object m : reporte) {
-            String filas[]={
-                String.format("%d",m),
-            };
+            String filas[] = {
+                String.format("%d", m),};
             modelo.addRow(filas);
         }
         return modelo;
     }
 
-public static DefaultTableModel setColumnsTable(){
-    
+    public static DefaultTableModel setColumnsTable() {
+
         /*Nombre de los libros que hayan sido solicitados para préstamos
         que además incluya nombre del lector y fecha de solicitud, 
         ordenado por fecha.*/
-        DefaultTableModel modelo =  new DefaultTableModel();
+        DefaultTableModel modelo = new DefaultTableModel();
         /*Establecemos las columnas*/
-        
-        ArrayList<String> columnas = new ArrayList<String> ();
+
+        ArrayList<String> columnas = new ArrayList<String>();
         columnas.add("Libro");
         columnas.add("Lector");
         columnas.add("Fecha de salida");
-        
-        for(Object col:columnas){
+
+        for (Object col : columnas) {
             modelo.addColumn(col);
         }
         return modelo;
     }
-    
+
 }

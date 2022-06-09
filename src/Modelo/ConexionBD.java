@@ -19,7 +19,7 @@ public class ConexionBD {
     //String usuario = "Gonzalo"; //Nombre del usuario
     //String contraseña = "z8*A+h59*e";   //Contraseña del usuario
     //usuario: root  Contraseña: Eliza1234
-    public Connection estableceConexion() {
+    public Connection estableceConexion(String usuario,String password) {
 
         String bd = "biblioteca";         //Nombre de la BD
         String servidor = "localhost";      //Nombre o ruta del servidor
@@ -28,9 +28,9 @@ public class ConexionBD {
         
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            cn = DriverManager.getConnection(cadena, "root", "");
+            cn = DriverManager.getConnection(cadena, usuario, password);
             //PreparedStatement pst;
-            //Mostrar.Mensaje("Conexión exitosa");
+            Mostrar.Mensaje("Conexión exitosa");
         } catch (Exception e) {
              Mostrar.Mensaje("Error:" + e.toString());
         }

@@ -2,15 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/EduardoCGarcia/Desktop/ProyectoBD/SistemaBiblioteca/src/Vista/Paneles/Reportes/ReportesPrestamos.java</file>
-            <file>file:/C:/Users/EduardoCGarcia/Desktop/ProyectoBD/SistemaBiblioteca/src/Controlador/PrincipalPrueba.java</file>
-            <file>file:/C:/Users/EduardoCGarcia/Desktop/ProyectoBD/SistemaBiblioteca/src/Modelo/ConexionBD.java</file>
-            <file>file:/C:/Users/EduardoCGarcia/Desktop/ProyectoBD/SistemaBiblioteca/src/Vista/Paneles/Reportes/ReportesLibrosPrestamos.java</file>
-            <file>file:/C:/Users/EduardoCGarcia/Desktop/ProyectoBD/SistemaBiblioteca/src/Vista/Paneles/Registrar/CreateClientePanel.java</file>
-            <file>file:/C:/Users/EduardoCGarcia/Desktop/ProyectoBD/SistemaBiblioteca/src/Vista/Paneles/Reportes/ReportesLectores.java</file>
-            <file>file:/C:/Users/EduardoCGarcia/Desktop/ProyectoBD/SistemaBiblioteca/src/Vista/Login.java</file>
-            <file>file:/C:/Users/EduardoCGarcia/Desktop/ProyectoBD/SistemaBiblioteca/src/Vista/Paneles/Reportes/ReportesLibros.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
