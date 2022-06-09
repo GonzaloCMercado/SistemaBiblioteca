@@ -1,6 +1,10 @@
 package Vista.Paneles.Reportes;
 
+import static Controlador.Pruebas.setColumnsTable;
 import DML.DML;
+import Modelo.ConexionBD;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,12 +22,12 @@ public class Reporte1 extends javax.swing.JPanel {
      */
     public Reporte1() {
         initComponents();
-        jTable1.setModel(setModelAndTableModel());
+        this.crearTabla();
     }
 
     public Reporte1(String usuario, String password) {
         initComponents();
-        jTable1.setModel(setModelAndTableModel());
+        
         this.usuario = usuario;
         this.password = password;
     }
@@ -39,14 +43,14 @@ public class Reporte1 extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblContent = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Listado de libros con los que cuenta cada sucursal de biblioteca");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -54,7 +58,7 @@ public class Reporte1 extends javax.swing.JPanel {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblContent);
 
         jLabel2.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -81,33 +85,50 @@ public class Reporte1 extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblContent;
     // End of variables declaration//GEN-END:variables
-public static DefaultTableModel setModelAndTableModel() {
-        DefaultTableModel modelo = setColumnsTable();
-        ArrayList reporte = DML.primerReporte();
-        for (Object m : reporte) {
-            String filas[] = {
-                String.format("%d", m),};
-            modelo.addRow(filas);
+
+    public void crearTabla(){
+        DefaultTableModel modelo =  setColumnsTable();
+        try {
+            ConexionBD conexion = new ConexionBD();
+            conexion.estableceConexion("root", "");
+            PreparedStatement pst;
+            pst = conexion.cn.prepareStatement("SELECT libro.Nombre AS nombre_libro, lector.Nombre \n"
+                    + "AS nombre_lector, prestamos.Fecha_Sale FROM libro,lector,prestamos \n"
+                    + "where libro.ID_Libro = prestamos.ID_Libro \n"
+                    + "AND lector.Num_Targeta = prestamos.Num_Targeta\n"
+                    + "ORDER BY prestamos.Fecha_Sale");
+
+            ResultSet rs = pst.executeQuery();
+            int i = 0;
+            while (rs.next()) {
+                System.out.println(rs.getString("nombre_libro"));
+                String filas[] = {
+                    String.format(rs.getString("nombre_libro")),
+                    String.format(rs.getString("nombre_lector")),
+                    String.format(rs.getString("Fecha_Sale"))
+                };
+                modelo.addRow(filas);
+            }
+            
+            this.tblContent.setModel(modelo);
+            
+
+        } catch (Exception e) {
+            System.out.println(e);
         }
-        return modelo;
     }
-
-    public static DefaultTableModel setColumnsTable() {
-
-        /*Nombre de los libros que hayan sido solicitados para préstamos
-        que además incluya nombre del lector y fecha de solicitud, 
-        ordenado por fecha.*/
-        DefaultTableModel modelo = new DefaultTableModel();
+    
+    public static DefaultTableModel setColumnsTable(){
+        DefaultTableModel modelo =  new DefaultTableModel();
         /*Establecemos las columnas*/
-
-        ArrayList<String> columnas = new ArrayList<String>();
-        columnas.add("Libro");
-        columnas.add("Lector");
-        columnas.add("Fecha de salida");
-
-        for (Object col : columnas) {
+        ArrayList<String> columnas = new ArrayList<String> ();
+        columnas.add("nombre_libro");
+        columnas.add("nombre_lector");
+        columnas.add("Fecha_Sale");
+        
+        for(Object col:columnas){
             modelo.addColumn(col);
         }
         return modelo;

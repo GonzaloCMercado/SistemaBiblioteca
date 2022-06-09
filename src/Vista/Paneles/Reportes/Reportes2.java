@@ -4,6 +4,9 @@
  */
 package Vista.Paneles.Reportes;
 
+import Modelo.ConexionBD;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,12 +24,12 @@ public class Reportes2 extends javax.swing.JPanel {
      */
     public Reportes2() {
         initComponents();
-        jTable1.setModel(setModelAndTableModel());
+        this.crearTabla();
     }
 
     public Reportes2(String usuario, String password) {
         initComponents();
-        jTable1.setModel(setModelAndTableModel());
+        this.crearTabla();
         this.usuario = usuario;
         this.password = password;
     }
@@ -41,10 +44,10 @@ public class Reportes2 extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblContent = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -52,7 +55,7 @@ public class Reportes2 extends javax.swing.JPanel {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblContent);
 
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -78,41 +81,45 @@ public class Reportes2 extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblContent;
     // End of variables declaration//GEN-END:variables
 
-    public static DefaultTableModel setModelAndTableModel() {
+    public void crearTabla() {
         DefaultTableModel modelo = setColumnsTable();
-        //Colocar los valores obtenidos de las tablas de la bases de datos en un arrayList 
-        //dicho arraylist debe ser iterado en el foreach que esta abajo y en cada String 
-        //colocar los atributos que sean creados, a que estos seran los renglones
-//        for (Maicitos m : Main.maicitos) {
-//            String filas[]={
-//                String.format("%d",m.getId()),
-//                m.getSabor(),
-//                String.format("%.2f",m.getPrecio()),
-//                String.format("%d",m.getTam()),
-//                String.format("%d",m.getCantidad())
-//            };
-//            modelo.addRow(filas);
-//        }
-        return modelo;
+        try {
+            ConexionBD conexion = new ConexionBD();
+            conexion.estableceConexion("root", "");
+            PreparedStatement pst;
+            pst = conexion.cn.prepareStatement("SELECT libro.Nombre,autores.Nombre AS Autores, editorial.Nombre AS Editorial, sucursal.Nom_Sucursal FROM libro, sucursal, copias_libro, autores, editorial \n"
+                    + "where libro.ID_Libro = copias_libro.ID_Libro AND sucursal.ID_Sucursal = copias_libro.ID_Sucursal\n"
+                    + "AND libro.ID_Autor = autores.ID_Autor \n"
+                    + "AND editorial.ID_Editorial = libro.ID_Editorial");
+
+            ResultSet rs = pst.executeQuery();
+            int i = 0;
+            while (rs.next()) {
+                String filas[] = {
+                    String.format(rs.getString("Autores")),
+                    String.format(rs.getString("Editorial")),
+                    String.format(rs.getString("Nom_Sucursal"))
+                };
+                modelo.addRow(filas);
+            }
+
+            this.tblContent.setModel(modelo);
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     public static DefaultTableModel setColumnsTable() {
-        /*Listado de libros con los que cuenta cada sucursal de
-        biblioteca, deberá incluir nombre del autor y nombre de 
-        la editorial.
-    
-    
-         */
         DefaultTableModel modelo = new DefaultTableModel();
         /*Establecemos las columnas*/
         ArrayList<String> columnas = new ArrayList<String>();
-        columnas.add("Libro");
-        columnas.add("Autor");
+        columnas.add("Autores");
         columnas.add("Editorial");
-        columnas.add("Surcursal");
+        columnas.add("Nom_Sucursal");
 
         for (Object col : columnas) {
             modelo.addColumn(col);

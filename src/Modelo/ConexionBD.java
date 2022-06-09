@@ -49,7 +49,7 @@ public class ConexionBD {
             Class.forName("com.mysql.cj.jdbc.Driver");
             cn = DriverManager.getConnection(cadena, "root", "");
             //PreparedStatement pst;
-            Mostrar.Mensaje("Conexión exitosa");
+            //Mostrar.Mensaje("Conexión exitosa");
         } catch (Exception e) {
             Mostrar.Mensaje("Error:" + e.toString());
         }
