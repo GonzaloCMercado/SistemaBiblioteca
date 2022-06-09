@@ -20,7 +20,6 @@ public class PrincipalPrueba {
      */
     public static void main(String[] args) {
         String reporte1 = "";
-        ArrayList<ArrayList> reporte1 = new ArrayList();
         ArrayList<String> renglones = new ArrayList<String>();
         
         try {
@@ -42,10 +41,6 @@ public class PrincipalPrueba {
                 renglones.add(rs.getString("Fecha_Sale"));
                 reporte1.add(renglones);
                 renglones.removeAll(renglones);
-            }
-            for (ArrayList r : reporte1) {
-                System.out.println(r.get(1) + " " + r.get(2) + " " + r.get(3));
-                
             }
             
         } catch (Exception e) {
