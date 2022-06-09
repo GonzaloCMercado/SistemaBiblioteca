@@ -9,13 +9,21 @@ package Vista.Paneles.Eliminar;
  * @author EduardoCGarcia
  */
 public class DeleteSucursalPanel extends javax.swing.JPanel {
-
+    private String usuario;
+    private String password;
     /**
      * Creates new form DeleteSucursalPanel
      */
     public DeleteSucursalPanel() {
         initComponents();
         deshabilitarBotonRegistrar();
+    }
+    
+        public DeleteSucursalPanel(String usuario,String password) {
+        initComponents();
+        deshabilitarBotonRegistrar();
+        this.usuario = usuario;
+        this.password = password;
     }
     
         public void deshabilitarBotonRegistrar() {

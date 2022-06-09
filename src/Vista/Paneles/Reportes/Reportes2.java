@@ -13,12 +13,22 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Reportes2 extends javax.swing.JPanel {
 
+    private String usuario;
+    private String password;
+
     /**
      * Creates new form ReportesLibros
      */
     public Reportes2() {
         initComponents();
         jTable1.setModel(setModelAndTableModel());
+    }
+
+    public Reportes2(String usuario, String password) {
+        initComponents();
+        jTable1.setModel(setModelAndTableModel());
+        this.usuario = usuario;
+        this.password = password;
     }
 
     /**
@@ -71,8 +81,8 @@ public class Reportes2 extends javax.swing.JPanel {
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
-public static DefaultTableModel setModelAndTableModel(){
-        DefaultTableModel modelo =  setColumnsTable();
+    public static DefaultTableModel setModelAndTableModel() {
+        DefaultTableModel modelo = setColumnsTable();
         //Colocar los valores obtenidos de las tablas de la bases de datos en un arrayList 
         //dicho arraylist debe ser iterado en el foreach que esta abajo y en cada String 
         //colocar los atributos que sean creados, a que estos seran los renglones
@@ -89,25 +99,25 @@ public static DefaultTableModel setModelAndTableModel(){
         return modelo;
     }
 
-public static DefaultTableModel setColumnsTable(){
+    public static DefaultTableModel setColumnsTable() {
         /*Listado de libros con los que cuenta cada sucursal de
         biblioteca, deberá incluir nombre del autor y nombre de 
         la editorial.
     
     
-    */
-        DefaultTableModel modelo =  new DefaultTableModel();
+         */
+        DefaultTableModel modelo = new DefaultTableModel();
         /*Establecemos las columnas*/
-        ArrayList<String> columnas = new ArrayList<String> ();
+        ArrayList<String> columnas = new ArrayList<String>();
         columnas.add("Libro");
         columnas.add("Autor");
         columnas.add("Editorial");
         columnas.add("Surcursal");
-        
-        for(Object col:columnas){
+
+        for (Object col : columnas) {
             modelo.addColumn(col);
         }
         return modelo;
     }
-    
+
 }

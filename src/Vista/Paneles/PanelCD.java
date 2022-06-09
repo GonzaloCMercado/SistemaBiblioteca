@@ -16,9 +16,20 @@ import Vista.app;
  */
 public class PanelCD extends javax.swing.JPanel {
 
+    private String usuario;
+    private String password;
+
     /**
      * Creates new form Libros
      */
+    public PanelCD(String usuario, String password) {
+        initComponents();
+        lblTitle.setText(app.typePanelCD);
+        cbxNombreReporte.setVisible(false);
+        this.usuario = usuario;
+        this.password = password;
+    }
+
     public PanelCD() {
         initComponents();
         lblTitle.setText(app.typePanelCD);
@@ -151,21 +162,27 @@ public class PanelCD extends javax.swing.JPanel {
         if (app.typePanelCD.equals("LIBRO")) {
             if (String.valueOf(jComboBox1.getSelectedItem()).equals("Eliminar")) {
                 DeleteLibroPanel p = new DeleteLibroPanel();
+                //DeleteLibroPanel p = new DeleteLibroPanel(this.usuario,this.password);
                 GUITools.panelIntoPanel(this, p);
             } else if (String.valueOf(jComboBox1.getSelectedItem()).equals("Registrar")) {
                 CreateLibrosPanel p = new CreateLibrosPanel();
+                //CreateLibrosPanel p = new CreateLibrosPanel(this.usuario,this.password);
                 GUITools.panelIntoPanel(this, p);
             } else {
                 if (cbxNombreReporte.getSelectedIndex() == 0) {
                     Reporte1 lib = new Reporte1();
+                    //Reporte1 lib = new Reporte1(this.usuario, this.password);
                     GUITools.panelIntoPanel(this, lib);
                 } else if (cbxNombreReporte.getSelectedIndex() == 1) {
                     Reportes2 lib = new Reportes2();
+                    //Reportes2 lib = new Reportes2(this.usuario,this.password);
                     GUITools.panelIntoPanel(this, lib);
                 } else if (cbxNombreReporte.getSelectedIndex() == 2) {
                     Reporte3 lib = new Reporte3();
+                    //Reporte3 lib = new Reporte3(this.usuario, this.password);
                     GUITools.panelIntoPanel(this, lib);
                 } else {
+                    //Reporte4 lib = new Reporte4();
                     Reporte4 lib = new Reporte4();
                     GUITools.panelIntoPanel(this, lib);
                 }
@@ -175,9 +192,11 @@ public class PanelCD extends javax.swing.JPanel {
         if (app.typePanelCD.equals("CLIENTE")) {
             if (String.valueOf(jComboBox1.getSelectedItem()).equals("Registrar")) {
                 CreateClientePanel p = new CreateClientePanel();
+                //CreateClientePanel p = new CreateClientePanel(this.usuario,this.password);
                 GUITools.panelIntoPanel(this, p);
             } else {
                 DeleteClientePanel p = new DeleteClientePanel();
+                //DeleteClientePanel p = new DeleteClientePanel(this.usuario,this.password);
                 GUITools.panelIntoPanel(this, p);
             }
         }
@@ -185,9 +204,11 @@ public class PanelCD extends javax.swing.JPanel {
         if (app.typePanelCD.equals("SUCURSALES")) {
             if (String.valueOf(jComboBox1.getSelectedItem()).equals("Registrar")) {
                 CreateSucursalPanel p = new CreateSucursalPanel();
+                //CreateSucursalPanel p = new CreateSucursalPanel(this.usuario,this.password);
                 GUITools.panelIntoPanel(this, p);
             } else {
-                DeleteSucursalPanel p = new DeleteSucursalPanel();
+                //DeleteSucursalPanel p = new DeleteSucursalPanel();
+                DeleteSucursalPanel p = new DeleteSucursalPanel(this.usuario,this.password);
                 GUITools.panelIntoPanel(this, p);
             }
         }

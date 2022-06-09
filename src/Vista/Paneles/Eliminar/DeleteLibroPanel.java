@@ -9,13 +9,21 @@ package Vista.Paneles.Eliminar;
  * @author EduardoCGarcia
  */
 public class DeleteLibroPanel extends javax.swing.JPanel {
-
+    private String usuario;
+    private String password;
     /**
      * Creates new form DeleteLibroPanel
      */
     public DeleteLibroPanel() {
         initComponents();
         deshabilitarBotonRegistrar();
+    }
+    
+    public DeleteLibroPanel(String usuario,String password) {
+        initComponents();
+        deshabilitarBotonRegistrar();
+        this.usuario = usuario;
+        this.password = password;
     }
 
     public void deshabilitarBotonRegistrar() {
