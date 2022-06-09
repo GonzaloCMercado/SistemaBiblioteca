@@ -14,27 +14,46 @@ import java.sql.DriverManager;
  * @author Gonzalo CH
  */
 public class ConexionBD {
-    
+
     public Connection cn = null;
+
     //String usuario = "Gonzalo"; //Nombre del usuario
     //String contraseña = "z8*A+h59*e";   //Contraseña del usuario
     //usuario: root  Contraseña: Eliza1234
-    public Connection estableceConexion(String usuario,String password) {
+    public Connection estableceConexion(String usuario, String password) {
+
+        String bd = "biblioteca1";         //Nombre de la BD
+        String servidor = "localhost";      //Nombre o ruta del servidor
+        String puerto = "3306";             //Puerto de enlace
+        String cadena = "jdbc:mysql://" + servidor + ":" + puerto + "/" + bd;    //Cadena para conexion con BD
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            cn = DriverManager.getConnection(cadena, usuario, password);
+            //PreparedStatement pst;
+            //Mostrar.Mensaje("Conexión exitosa");
+        } catch (Exception e) {
+            Mostrar.Mensaje("Error:" + e.toString());
+        }
+        return cn;
+    }
+
+    public Connection estableceConexion() {
 
         String bd = "biblioteca";         //Nombre de la BD
         String servidor = "localhost";      //Nombre o ruta del servidor
         String puerto = "3306";             //Puerto de enlace
         String cadena = "jdbc:mysql://" + servidor + ":" + puerto + "/" + bd;    //Cadena para conexion con BD
-        
+
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            cn = DriverManager.getConnection(cadena, usuario, password);
+            cn = DriverManager.getConnection(cadena, "root", "");
             //PreparedStatement pst;
             Mostrar.Mensaje("Conexión exitosa");
         } catch (Exception e) {
-             Mostrar.Mensaje("Error:" + e.toString());
+            Mostrar.Mensaje("Error:" + e.toString());
         }
         return cn;
     }
-    
+
 }

@@ -151,7 +151,7 @@ public class Princial extends javax.swing.JFrame {
         btnCliente.setBackground(new java.awt.Color(255, 255, 255));
         btnCliente.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
         btnCliente.setForeground(new java.awt.Color(255, 255, 255));
-        btnCliente.setText("Clientes");
+        btnCliente.setText("Lector");
         btnCliente.setBorder(null);
         btnCliente.setContentAreaFilled(false);
         btnCliente.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -183,10 +183,9 @@ public class Princial extends javax.swing.JFrame {
                         .addComponent(btnSucursales))
                     .addGroup(MenuLateralLayout.createSequentialGroup()
                         .addGap(56, 56, 56)
-                        .addComponent(btnLibros))
-                    .addGroup(MenuLateralLayout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(btnCliente)))
+                        .addGroup(MenuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnCliente)
+                            .addComponent(btnLibros))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         MenuLateralLayout.setVerticalGroup(
@@ -195,9 +194,9 @@ public class Princial extends javax.swing.JFrame {
                 .addComponent(FondoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(btnLibros)
-                .addGap(47, 47, 47)
+                .addGap(49, 49, 49)
                 .addComponent(btnCliente)
-                .addGap(43, 43, 43)
+                .addGap(41, 41, 41)
                 .addComponent(btnSucursales)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
                 .addComponent(btnSalir)

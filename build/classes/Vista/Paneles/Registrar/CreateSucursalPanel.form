@@ -117,6 +117,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtNombre">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNombreKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblDireccion">
           <Properties>
@@ -133,6 +136,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtDireccion">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtDireccionKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnRegistrar">
           <Properties>
@@ -142,6 +148,7 @@
             <Property name="text" type="java.lang.String" value="Registrar"/>
           </Properties>
           <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarActionPerformed"/>
             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="btnRegistrarKeyReleased"/>
           </Events>
         </Component>

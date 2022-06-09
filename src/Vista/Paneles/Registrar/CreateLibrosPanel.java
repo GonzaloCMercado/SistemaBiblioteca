@@ -5,10 +5,12 @@
 package Vista.Paneles.Registrar;
 
 import Modelo.ConexionBD;
+import Utilerias.Mostrar;
 import Vista.app;
 import java.util.ArrayList;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -18,6 +20,16 @@ public class CreateLibrosPanel extends javax.swing.JPanel {
 
     private String usuario;
     private String password;
+    private ArrayList editorialesID = new ArrayList();
+    private ArrayList editorialesNombre = new ArrayList();
+    private ArrayList autoresID = new ArrayList();
+    private ArrayList autoresNombre = new ArrayList();
+    private ArrayList sucursalesID = new ArrayList();
+    private ArrayList sucursalesNombre = new ArrayList();
+    private String sql1 = "SELECT * FROM editorial";
+    private String sql2 = "SELECT * FROM autores";
+    private String sql3 = "SELECT * FROM sucursal";
+    ConexionBD conexion = new ConexionBD();
 
     /**
      * Creates new form Libros
@@ -25,6 +37,13 @@ public class CreateLibrosPanel extends javax.swing.JPanel {
     public CreateLibrosPanel() {
         initComponents();
         deshabilitarBotonRegistrar();
+
+        conexion.estableceConexion("Gonzalo", "z8*A+h59*e");
+        llenarComboBox("Nombre", "ID_Editorial", sql1, editorialesNombre, editorialesID, cboxEditorial);
+        System.out.println(editorialesNombre.size());
+        System.out.println(editorialesID.size());
+        llenarComboBox("Nombre", "ID_Autor", sql2, autoresNombre, autoresID, cboxAutor);
+        llenarComboBox("Nom_Sucursal", "ID_Sucursal", sql3, sucursalesNombre, sucursalesID, cboxSucursal);
     }
 
     public CreateLibrosPanel(String usuario, String password) {
@@ -32,14 +51,47 @@ public class CreateLibrosPanel extends javax.swing.JPanel {
         deshabilitarBotonRegistrar();
         this.usuario = usuario;
         this.password = password;
+        //ConexionBD conexion = new ConexionBD();
+        conexion.estableceConexion("Gonzalo", "z8*A+h59*e");
+        llenarComboBox("Nombre", "ID_Editorial", sql1, editorialesNombre, editorialesID, cboxEditorial);
+        llenarComboBox("Nombre", "ID_Autor", sql2, autoresNombre, autoresID, cboxAutor);
+        llenarComboBox("Nom_Sucursal", "ID_Sucursal", sql3, autoresNombre, autoresID, cboxSucursal);
     }
 
     public void deshabilitarBotonRegistrar() {
-        if (txtNombreLibro.getText().isBlank()) {
+        if (txtNombreLibro.getText().isBlank() || txtNumCopias.getText().isBlank()) {
             btnRegistrar.setEnabled(false);
         } else {
             btnRegistrar.setEnabled(true);
         }
+    }
+//Se puede mejorar la funcion para ser general y no solo para una tabla
+
+    public void llenarComboBox(String atributo1, String atributo2, String sql, ArrayList a1, ArrayList a2, JComboBox cbox) {
+        try {
+
+            PreparedStatement pst = conexion.cn.prepareStatement(sql);
+            ResultSet result = pst.executeQuery();
+
+            while (result.next()) {
+                cbox.addItem(result.getString(atributo1));
+                a1.add(result.getString(atributo1));
+                a2.add(result.getString(atributo2));
+            }
+
+        } catch (Exception e) {
+            Mostrar.Mensaje("Error al cargar datos");
+        }
+
+    }
+
+    public int buscarId(ArrayList a1, ArrayList a2, JComboBox cbox) {
+        for (int i = 0; i < a1.size(); i++) {
+            if (String.valueOf(cbox.getSelectedItem()).equals(a1.get(i))) {
+                return Integer.parseInt((String) a2.get(i));
+            }
+        }
+        return 0;
     }
 
 //    private void llenarCboxEditorial() {
@@ -51,7 +103,6 @@ public class CreateLibrosPanel extends javax.swing.JPanel {
 //        pst = 
 //        
 //    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -71,6 +122,10 @@ public class CreateLibrosPanel extends javax.swing.JPanel {
         cboxEditorial = new javax.swing.JComboBox<>();
         cboxAutor = new javax.swing.JComboBox<>();
         btnRegistrar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        cboxSucursal = new javax.swing.JComboBox<>();
+        lblNoCopias = new javax.swing.JLabel();
+        txtNumCopias = new javax.swing.JTextField();
 
         lblRegistro.setBackground(new java.awt.Color(0, 0, 0));
         lblRegistro.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -93,17 +148,34 @@ public class CreateLibrosPanel extends javax.swing.JPanel {
             }
         });
 
-        cboxEditorial.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cboxEditorial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboxEditorialActionPerformed(evt);
             }
         });
 
-        cboxAutor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         btnRegistrar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnRegistrar.setText("Registrar");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel2.setText("Sucursal");
+
+        lblNoCopias.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lblNoCopias.setText("Numero de copias");
+
+        txtNumCopias.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNumCopiasKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumCopiasKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -116,22 +188,30 @@ public class CreateLibrosPanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(269, 269, 269)
+                        .addComponent(btnRegistrar))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(97, 97, 97)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblEditorial)
-                            .addComponent(lblAutor)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(lblNombreLibro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(36, 36, 36)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cboxEditorial, 0, 283, Short.MAX_VALUE)
-                            .addComponent(cboxAutor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtNombreLibro)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(269, 269, 269)
-                        .addComponent(btnRegistrar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblEditorial)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(lblNombreLibro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(lblAutor)
+                                    .addComponent(jLabel2))
+                                .addGap(36, 36, 36)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cboxEditorial, 0, 283, Short.MAX_VALUE)
+                                    .addComponent(txtNombreLibro)
+                                    .addComponent(cboxAutor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cboxSucursal, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblNoCopias, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtNumCopias, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(153, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,17 +224,25 @@ public class CreateLibrosPanel extends javax.swing.JPanel {
                     .addComponent(txtNombreLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEditorial)
                     .addComponent(cboxEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAutor)
                     .addComponent(cboxAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(69, 69, 69)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(cboxSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNoCopias)
+                    .addComponent(txtNumCopias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(53, 53, 53)
                 .addComponent(btnRegistrar)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -177,17 +265,81 @@ public class CreateLibrosPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_cboxEditorialActionPerformed
 
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        int editID = buscarId(editorialesNombre, editorialesID, cboxEditorial);
+        System.out.println(editID);
+        int autorID = buscarId(autoresNombre, autoresID, cboxAutor);
+        System.out.println(autorID);
+        int sucursalID = buscarId(sucursalesNombre, sucursalesID, cboxSucursal);
+        String nombre = txtNombreLibro.getText();
+
+        try {
+            //ConexionBD c = new ConexionBD();
+            //.estableceConexion("Gonzalo", "z8*A+h59*e");
+            PreparedStatement pst = conexion.cn.prepareStatement("INSERT INTO libro(ID_Libro,Nombre,ID_Editorial,ID_Autor) "
+                    + "VALUES(?, ?, ?, ?);");
+
+            pst.setInt(1, 0);
+            pst.setString(2, nombre);
+            pst.setInt(3, editID);
+            pst.setInt(4, autorID);
+            pst.executeUpdate();
+
+            PreparedStatement pst2 = conexion.cn.prepareStatement("SELECT * FROM libro WHERE Nombre = ?");
+            pst2.setString(1, nombre);
+            System.out.println("txt = " + nombre);
+            ResultSet idLibro = pst2.executeQuery();
+            String id = "";
+            System.out.println("Se ejecuto");
+            while (idLibro.next()) {
+                id = idLibro.getString("ID_Libro");
+                System.out.println("ID Libro = " + id);
+            }
+            if (id.isEmpty()) {
+                Mostrar.Mensaje("No se encontro el id");
+            }
+            PreparedStatement pst3 = conexion.cn.prepareStatement("INSERT INTO copias_libro(ID_Libro, ID_Sucursal, Num_Copias) "
+                    + "VALUES(?, ?, ?);");
+            pst3.setInt(1, Integer.parseInt(id));
+            System.out.println("Numero de sucursal ="+sucursalID);
+            pst3.setInt(2, sucursalID);
+            pst3.setInt(3, Integer.parseInt(txtNumCopias.getText()));
+            System.out.println("ERRERETRETRE");
+            pst3.executeUpdate();
+            System.out.println("ccccc");
+
+        } catch (Exception e) {
+        }
+
+
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void txtNumCopiasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumCopiasKeyTyped
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {  //Condicional que solo permite que se digiten numeros
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNumCopiasKeyTyped
+
+    private void txtNumCopiasKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumCopiasKeyReleased
+        deshabilitarBotonRegistrar();
+    }//GEN-LAST:event_txtNumCopiasKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JComboBox<String> cboxAutor;
     private javax.swing.JComboBox<String> cboxEditorial;
+    private javax.swing.JComboBox<String> cboxSucursal;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblAutor;
     private javax.swing.JLabel lblEditorial;
+    private javax.swing.JLabel lblNoCopias;
     private javax.swing.JLabel lblNombreLibro;
     private javax.swing.JLabel lblRegistro;
     private javax.swing.JTextField txtNombreLibro;
+    private javax.swing.JTextField txtNumCopias;
     // End of variables declaration//GEN-END:variables
 }

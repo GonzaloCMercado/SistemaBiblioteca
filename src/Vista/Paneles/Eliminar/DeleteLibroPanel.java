@@ -4,19 +4,25 @@
  */
 package Vista.Paneles.Eliminar;
 
+import Modelo.ConexionBD;
+import java.sql.PreparedStatement;
+
 /**
  *
- * @author EduardoCGarcia
+ * @author 
  */
 public class DeleteLibroPanel extends javax.swing.JPanel {
     private String usuario;
     private String password;
+    ConexionBD conexion = new ConexionBD();
+    
     /**
      * Creates new form DeleteLibroPanel
      */
     public DeleteLibroPanel() {
         initComponents();
         deshabilitarBotonRegistrar();
+        conexion.estableceConexion("Gonzalo", "z8*A+h59*e");
     }
     
     public DeleteLibroPanel(String usuario,String password) {
@@ -24,6 +30,8 @@ public class DeleteLibroPanel extends javax.swing.JPanel {
         deshabilitarBotonRegistrar();
         this.usuario = usuario;
         this.password = password;
+        conexion.estableceConexion("Gonzalo", "z8*A+h59*e");
+        
     }
 
     public void deshabilitarBotonRegistrar() {
@@ -67,6 +75,11 @@ public class DeleteLibroPanel extends javax.swing.JPanel {
 
         btnEliminar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -115,6 +128,34 @@ public class DeleteLibroPanel extends javax.swing.JPanel {
     private void txtIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyReleased
         deshabilitarBotonRegistrar();
     }//GEN-LAST:event_txtIdKeyReleased
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        try {
+            //ConexionBD c = new ConexionBD();
+            //.estableceConexion("Gonzalo", "z8*A+h59*e");
+            PreparedStatement pst,pst2,pst3;
+            pst= conexion.cn.prepareStatement(" DELETE FROM prestamos WHERE ID_Libro = ?;");
+								 
+                                                         
+                    
+            pst.setInt(1, Integer.parseInt(txtId.getText()));
+           
+            pst.executeUpdate();
+            
+            pst2 = conexion.cn.prepareStatement("DELETE FROM copias_libro WHERE ID_Libro = ?");
+            pst2.setInt(1, Integer.parseInt(txtId.getText()));
+           
+            pst2.executeUpdate();
+            
+            pst3 = conexion.cn.prepareStatement("DELETE FROM libro WHERE ID_Libro = ?");
+            pst3.setInt(1, Integer.parseInt(txtId.getText()));
+           
+            pst3.executeUpdate();
+            System.out.println("ccccc");
+
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

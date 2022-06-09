@@ -4,14 +4,17 @@
  */
 package Vista.Paneles.Eliminar;
 
+import Modelo.ConexionBD;
+import java.sql.PreparedStatement;
 /**
  *
- * @author EduardoCGarcia
+ * @author 
  */
 public class DeleteClientePanel extends javax.swing.JPanel {
 
     private String usuario;
     private String password;
+    ConexionBD conexion = new ConexionBD();
 
     /**
      * Creates new form DeleteClientePanel
@@ -19,6 +22,7 @@ public class DeleteClientePanel extends javax.swing.JPanel {
     public DeleteClientePanel() {
         initComponents();
         deshabilitarBotonRegistrar();
+        conexion.estableceConexion("Gonzalo", "z8*A+h59*e");
     }
 
     public DeleteClientePanel(String usuario, String password) {
@@ -26,6 +30,7 @@ public class DeleteClientePanel extends javax.swing.JPanel {
         deshabilitarBotonRegistrar();
         this.usuario = usuario;
         this.password = password;
+        conexion.estableceConexion("Gonzalo", "z8*A+h59*e");
     }
 
     public void deshabilitarBotonRegistrar() {
@@ -125,7 +130,19 @@ public class DeleteClientePanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+            try {
+            //ConexionBD c = new ConexionBD();
+            //.estableceConexion("Gonzalo", "z8*A+h59*e");
+            PreparedStatement pst = conexion.cn.prepareStatement(" DELETE FROM lector WHERE Num_Targeta=?");
+							         
+                    
+            pst.setInt(1, Integer.parseInt(txtId.getText()));
+           
+            pst.executeUpdate();
+            System.out.println("ccccc");
 
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed

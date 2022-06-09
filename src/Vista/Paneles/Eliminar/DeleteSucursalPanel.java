@@ -4,19 +4,24 @@
  */
 package Vista.Paneles.Eliminar;
 
+
+import Modelo.ConexionBD;
+import java.sql.PreparedStatement;
 /**
  *
- * @author EduardoCGarcia
+ * @author 
  */
 public class DeleteSucursalPanel extends javax.swing.JPanel {
     private String usuario;
     private String password;
+    ConexionBD conexion = new ConexionBD();
     /**
      * Creates new form DeleteSucursalPanel
      */
     public DeleteSucursalPanel() {
         initComponents();
         deshabilitarBotonRegistrar();
+        conexion.estableceConexion("Gonzalo", "z8*A+h59*e");
     }
     
         public DeleteSucursalPanel(String usuario,String password) {
@@ -24,6 +29,7 @@ public class DeleteSucursalPanel extends javax.swing.JPanel {
         deshabilitarBotonRegistrar();
         this.usuario = usuario;
         this.password = password;
+        conexion.estableceConexion("Gonzalo", "z8*A+h59*e");
     }
     
         public void deshabilitarBotonRegistrar() {
@@ -57,7 +63,7 @@ public class DeleteSucursalPanel extends javax.swing.JPanel {
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Eliminar Cliente");
+        jLabel1.setText("Eliminar Sucursal");
 
         txtId.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -67,6 +73,11 @@ public class DeleteSucursalPanel extends javax.swing.JPanel {
 
         btnEliminar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -82,8 +93,8 @@ public class DeleteSucursalPanel extends javax.swing.JPanel {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(199, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -115,6 +126,30 @@ public class DeleteSucursalPanel extends javax.swing.JPanel {
     private void txtIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyReleased
         deshabilitarBotonRegistrar();
     }//GEN-LAST:event_txtIdKeyReleased
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        try {
+            //ConexionBD c = new ConexionBD();
+            //.estableceConexion("Gonzalo", "z8*A+h59*e");
+            PreparedStatement pst,pst2,pst3;
+            pst = conexion.cn.prepareStatement(" DELETE FROM sucursal WHERE ID_Sucursal=?");
+								        
+            pst.setInt(1, Integer.parseInt(txtId.getText()));
+            pst.executeUpdate();
+            
+            pst2 = conexion.cn.prepareStatement("DELETE FROM copias_libro WHERE ID_Sucursal=?");
+            pst2.setInt(1, Integer.parseInt(txtId.getText()));
+            pst2.executeUpdate();
+            
+            pst3 = conexion.cn.prepareStatement("DELETE FROM prestamos WHERE ID_Sucursal=?");
+            pst3.setInt(1, Integer.parseInt(txtId.getText()));
+           
+            pst3.executeUpdate();
+            System.out.println("ccccc");
+
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

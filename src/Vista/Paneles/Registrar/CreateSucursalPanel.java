@@ -4,6 +4,10 @@
  */
 package Vista.Paneles.Registrar;
 
+import Modelo.ConexionBD;
+import java.sql.PreparedStatement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author EduardoCGarcia
@@ -12,12 +16,14 @@ public class CreateSucursalPanel extends javax.swing.JPanel {
 
     private String usuario;
     private String password;
-
+    ConexionBD conexion = new ConexionBD();
+    
     /**
      * Creates new form CreateSucursalPanel
      */
     public CreateSucursalPanel() {
         initComponents();
+        conexion.estableceConexion("Gonzalo", "z8*A+h59*e");
         deshabilitarBotonRegistrar();
     }
 
@@ -26,6 +32,7 @@ public class CreateSucursalPanel extends javax.swing.JPanel {
         deshabilitarBotonRegistrar();
         this.usuario = usuario;
         this.password = password;
+        conexion.estableceConexion("Gonzalo", "z8*A+h59*e");
     }
 
     public void deshabilitarBotonRegistrar() {
@@ -63,13 +70,30 @@ public class CreateSucursalPanel extends javax.swing.JPanel {
         lblNombre.setForeground(new java.awt.Color(0, 0, 0));
         lblNombre.setText("Nombre:");
 
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreKeyReleased(evt);
+            }
+        });
+
         lblDireccion.setBackground(new java.awt.Color(0, 0, 0));
         lblDireccion.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblDireccion.setForeground(new java.awt.Color(0, 0, 0));
         lblDireccion.setText("Dirección:");
 
+        txtDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDireccionKeyReleased(evt);
+            }
+        });
+
         btnRegistrar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnRegistrar.setText("Registrar");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
         btnRegistrar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 btnRegistrarKeyReleased(evt);
@@ -135,6 +159,33 @@ public class CreateSucursalPanel extends javax.swing.JPanel {
     private void btnRegistrarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnRegistrarKeyReleased
         deshabilitarBotonRegistrar();
     }//GEN-LAST:event_btnRegistrarKeyReleased
+
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        try {
+            //ConexionBD c = new ConexionBD();
+            //.estableceConexion("Gonzalo", "z8*A+h59*e");
+            PreparedStatement pst = conexion.cn.prepareStatement("INSERT INTO  sucursal(ID_Sucursal,Nom_Sucursal,Direccion) "
+                    + "VALUES(?,?,?)");
+            
+            pst.setInt(1, 0);
+            pst.setString(2, txtNombre.getText());
+            pst.setString(3, txtDireccion.getText());
+    
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Sucursal creada");
+
+        } catch (Exception e) {
+        }
+        
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
+        deshabilitarBotonRegistrar();
+    }//GEN-LAST:event_txtNombreKeyReleased
+
+    private void txtDireccionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyReleased
+        deshabilitarBotonRegistrar();
+    }//GEN-LAST:event_txtDireccionKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
