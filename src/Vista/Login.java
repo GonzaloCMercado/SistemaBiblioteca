@@ -202,7 +202,7 @@ public class Login extends javax.swing.JFrame {
 
             usuario = txtUsuario.getText();
             contraseña = String.copyValueOf(txtPassword.getPassword());
-            c.estableceConexion();
+            c.estableceConexion("root", "");
             if (c.cn != null) {
                 //Login l = new Login(usuario, contraseña);
 //                l.setLocationRelativeTo(null);

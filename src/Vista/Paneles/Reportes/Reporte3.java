@@ -4,7 +4,12 @@
  */
 package Vista.Paneles.Reportes;
 
+import Modelo.ConexionBD;
+import Utilerias.Mostrar;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
+import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,12 +26,12 @@ public class Reporte3 extends javax.swing.JPanel {
      */
     public Reporte3() {
         initComponents();
-        jTable1.setModel(setModelAndTableModel());
+        llenarComboBox(cbxFecha);
     }
 
     public Reporte3(String usuario, String password) {
         initComponents();
-        jTable1.setModel(setModelAndTableModel());
+        llenarComboBox(cbxFecha);
         this.usuario = usuario;
         this.password = password;
     }
@@ -41,12 +46,12 @@ public class Reporte3 extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblContent = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbxFecha = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -54,11 +59,17 @@ public class Reporte3 extends javax.swing.JPanel {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblContent);
 
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Listado de libros que están en préstamo de acuerdo a una fecha de salida.");
+
+        cbxFecha.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxFechaItemStateChanged(evt);
+            }
+        });
 
         jLabel2.setText("Fecha:");
 
@@ -75,7 +86,7 @@ public class Reporte3 extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbxFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(174, 174, 174))
         );
         layout.setVerticalGroup(
@@ -85,51 +96,84 @@ public class Reporte3 extends javax.swing.JPanel {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cbxFechaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxFechaItemStateChanged
+        this.crearTabla();
+    }//GEN-LAST:event_cbxFechaItemStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cbxFecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblContent;
     // End of variables declaration//GEN-END:variables
-public static DefaultTableModel setModelAndTableModel() {
+
+    
+    
+    public void crearTabla() {
         DefaultTableModel modelo = setColumnsTable();
-        //Colocar los valores obtenidos de las tablas de la bases de datos en un arrayList 
-        //dicho arraylist debe ser iterado en el foreach que esta abajo y en cada String 
-        //colocar los atributos que sean creados, a que estos seran los renglones
-//        for (Maicitos m : Main.maicitos) {
-//            String filas[]={
-//                String.format("%d",m.getId()),
-//                m.getSabor(),
-//                String.format("%.2f",m.getPrecio()),
-//                String.format("%d",m.getTam()),
-//                String.format("%d",m.getCantidad())
-//            };
-//            modelo.addRow(filas);
-//        }
-        return modelo;
+        try {
+            ConexionBD conexion = new ConexionBD();
+            conexion.estableceConexion("root", "");
+            PreparedStatement pst;
+            pst = conexion.cn.prepareStatement("SELECT libro.Nombre FROM libro, prestamos\n"
+                    + "where prestamos.Fecha_Sale = ? \n"
+                    + "AND libro.ID_Libro = prestamos.ID_Libro");
+            
+            pst.setString(1, (String)cbxFecha.getSelectedItem());
+            
+            
+            ResultSet rs = pst.executeQuery();
+            int i = 0;
+            while (rs.next()) {
+                String filas[] = {
+                    String.format(rs.getString("Nombre"))
+                };
+                modelo.addRow(filas);
+            }
+
+            this.tblContent.setModel(modelo);
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     public static DefaultTableModel setColumnsTable() {
-        /*Listado de libros que están en préstamo de acuerdo
- a una fecha de salida ingresada por el usuario.*/
         DefaultTableModel modelo = new DefaultTableModel();
         /*Establecemos las columnas*/
         ArrayList<String> columnas = new ArrayList<String>();
-        columnas.add("Libro");
+        columnas.add("nombre_libro");
 
         for (Object col : columnas) {
             modelo.addColumn(col);
         }
         return modelo;
     }
+    
+    public void llenarComboBox(JComboBox cbox) {
+        try {
+            ConexionBD conexion = new ConexionBD();
+            conexion.estableceConexion("root", "");
+            PreparedStatement pst = conexion.cn.prepareStatement("SELECT * FROM prestamos;");
+            ResultSet result = pst.executeQuery();
 
+            while (result.next()) {
+                cbox.addItem(result.getString("Fecha_Sale"));
+            }
+
+        } catch (Exception e) {
+            Mostrar.Mensaje("Error al cargar datos");
+        }
+
+    }
+    
 }
